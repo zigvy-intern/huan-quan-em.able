@@ -1,11 +1,93 @@
-body, html,p{
+body, html,p, span{
   padding: 0;
   margin: 0;
 }
 
-.blue-top{
-  display: inline-block;
-  height: 37px;
+.blue-top-wrapper{
   background-color: #4a90e2;
   width: 100%;
+  height: 35px;
 }
+
+.blue-top{
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  height: 100%;
+  width: 80%;
+  margin-left: 10%;
+  color: white;
+}
+
+.blue-top > .child{
+  font-size: 14px;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.blue-top > .child > p{
+padding-top: 5%;
+}
+
+.blue-top > .child:nth-child(1) > p{
+  padding-top: 6.25%;
+}
+
+.blue-top > .child:nth-child(1){
+  justify-self: left;
+}
+
+.blue-top > .child:nth-child(2){
+  justify-self: right;
+}
+
+@media (max-width: 843px){
+  .blue-top-wrapper{
+    height: 45px;
+  }
+  .blue-top > .child > p{
+    padding-top: 7%;
+  }
+    
+    .blue-top > .child:nth-child(1) > p{
+      padding-top: 9.25%;
+  }
+
+}
+
+@media (max-width: 568px){
+
+  .blue-top{
+    width: 90%;
+    margin-left: 5%;
+    color: white;
+  }
+
+  .blue-top > .child{
+    font-size: 13px;
+  }
+
+  .blue-top > .child > p{
+    padding-top: 10%;
+  }
+    
+    .blue-top > .child:nth-child(1) > p{
+      padding-top: 12%;
+  }
+
+}
+
+@media (max-width: 568px){
+  .blue-top > .child{
+    font-size: 12px;
+  }
+
+  .blue-top > .child > p{
+    padding-top: 11%;
+  }
+    
+  .blue-top > .child:nth-child(1) > p{
+    padding-top: 13%;
+  }
+}
+
+@media (max-width: 568px)
