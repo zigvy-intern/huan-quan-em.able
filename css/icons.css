@@ -26,39 +26,32 @@
 
 .icon-arrow-down:before {
   content: "\e901";
-  color: #fff;
 }
 .icon-add:before {
   content: "\e902";
-  color: #4a90e2;
 }
 .icon-delete:before {
   content: "\e903";
-  color: #d9d9d9;
 }
 .icon-edit:before {
   content: "\e904";
-  color: #d9d9d9;
 }
 .icon-loading:before {
   content: "\e905";
-  color: #b4bcc3;
+
 }
 .icon-noti:before {
   content: "\e906";
-  color: #4a90e2;
+
 }
 .icon-play:before {
   content: "\e907";
-  color: #fff;
 }
 .icon-search:before {
   content: "\e908";
-  color: #4a90e2;
 }
 .icon-send:before {
   content: "\e909";
-  color: #4a90e2;
 }
 .icon-mouse:before {
   content: "\e900";
