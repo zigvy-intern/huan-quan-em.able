@@ -1,0 +1,203 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?esui0h');
+    src:  url('fonts/icomoon.eot?esui0h#iefix') format('embedded-opentype'),
+      url('fonts/icomoon.ttf?esui0h') format('truetype'),
+      url('fonts/icomoon.woff?esui0h') format('woff'),
+      url('fonts/icomoon.svg?esui0h#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-mouse:before {
+    content: "\e900";
+  }
+
+
+
+html, body {
+     height: 100%;
+     margin:0;
+     padding: 0;
+}
+
+.background {
+    text-align: center;
+    width: 100%;
+	height: 400px;
+    background-image: url('hero-area.jpg') ;
+    background-size: cover; 
+}
+.background::after{
+    background: #160c1dd4;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 60%;
+    display: block;
+    top: 0;
+    z-index: 0;
+}
+
+/* .box {
+	width: 100%;
+	height: 400px;
+	background-color: rgba(124,17,107,0.2);
+    color: white;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+} */
+.home{
+    color: #FA6D73;
+}
+.nav{
+    display: grid;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left:17%;
+    color: white;
+    grid-template-columns: repeat(10, auto);
+    grid-template-rows: auto;
+    grid-column-gap: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.item1{
+    grid-column: 1/ span 2;
+    margin-right: 150px;
+}
+.grid-item{
+    margin-top:13px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.outter-box{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.left-arrow{
+    z-index: 99;
+}
+
+.right-arrow{
+    z-index: 99;
+}
+
+.top-des{
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 8%;
+    padding-left:16%;
+    padding-right: 16%;
+    z-index: 99;
+
+}
+
+.top-des .title{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.top-des .content{
+    margin-top:30px;
+    color: white;
+    line-height: 25px;
+}
+.top-des .button-list{
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 20px;
+}
+.button-child{
+    cursor: pointer;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin:20px;
+}
+
+.button-child span{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11px;
+    margin:10px;
+    font-weight: 700;
+    
+}
+
+.read-more{
+    color: white;
+    background-color: #FA6D73;
+    border: 1px solid #FA6D73;
+}
+.purchase{
+    background-color: #2F3046;
+    color: white;
+    border: 1px solid white;
+}
+
+.mid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 240px;
+}
+
+.mid-content{
+    width: 100%;
+    padding-right: 100px;
+}
+
+.mid-content .content-mid{
+    padding-right: 200px;
+}
+
+.wwr{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: #FA6D73;
+    border-bottom: 1px solid #FA6D73;
+    margin-right: 555px;
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+
+.about-us{
+    margin-top:10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.content-mid > p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 28px;
+}
+
