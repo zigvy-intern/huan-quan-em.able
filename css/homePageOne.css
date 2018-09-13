@@ -103,6 +103,7 @@
 }
 
 .course-list > .course{
+  margin-bottom: 17.5px;
   border-top: 1px dotted #8c8c8c;
   width: 51.7%;
   display: grid;
