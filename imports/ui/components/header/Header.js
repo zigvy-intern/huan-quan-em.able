@@ -4,11 +4,16 @@ export default class Header extends Component {
 
   constructor(props) {
     super(props);
-    this.changeOnClick = this.changeOnClick.bind(this);
+    // this.changeOnClick = this.changeOnClick.bind(this);
   }
 
   changeOnClick(childPosition) {
-
+    document.getElementById("nav-" + childPosition).style.borderBottom = "1.5px solid #4a90e2";
+    for (var i = 1; i <= 7; i++) {
+      if (i != childPosition) {
+        document.getElementById("nav-" + i).style.borderBottom = "1.5px solid transparent";
+      }
+    }
   }
 
   render() {
@@ -34,37 +39,37 @@ export default class Header extends Component {
             <div className="child">
               <img src="/img/logo.png" alt="" />
             </div>
-            <div id="nav-1" className="child">
+            <div onClick={() => this.changeOnClick("1")} id="nav-1" className="child">
               <p>
                 My Courses
               </p>
             </div>
-            <div id="nav-2" className="child">
+            <div onClick={() => this.changeOnClick("2")} id="nav-2" className="child">
               <p>
                 My Bookings
               </p>
             </div>
-            <div id="nav-3" className="child">
+            <div onClick={() => this.changeOnClick("3")} id="nav-3" className="child">
               <p>
                 Dashboard
               </p>
             </div>
-            <div id="nav-4" className="child">
+            <div onClick={() => this.changeOnClick("4")} id="nav-4" className="child">
               <p>
                 How It Works
               </p>
             </div>
-            <div id="nav-5" className="child">
+            <div onClick={() => this.changeOnClick("5")} id="nav-5" className="child">
               <p>
                 All Courses
               </p>
             </div>
-            <div id="nav-6" className="child">
+            <div onClick={() => this.changeOnClick("6")} id="nav-6" className="child">
               <p>
                 Blog
               </p>
             </div>
-            <div id="nav-7" className="child">
+            <div onClick={() => this.changeOnClick("7")} id="nav-7" className="child">
               <p>
                 Course Leads
               </p>
