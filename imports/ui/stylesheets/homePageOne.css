@@ -9,7 +9,7 @@
   max-width: 745px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2,auto);
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
 }
 
 .description > .des-child{
@@ -17,19 +17,19 @@
 }
 
 .description > .des-child > p{
+  padding: 0;
+  margin: 0;
   line-height: 18px;
   font-size: 9px;
   color: #8c8c8c;
   font-weight: normal;
-    font-style: italic;
+  font-style: italic;
 }
 
 .description > .des-button{
-  margin-left: 200px;
   height: 34.5px;
   width: 143px;
   justify-self: right;
-  
 }
 
 .des-button > button{
@@ -267,4 +267,31 @@
 .icon-loading{
   color: #b4bcc3;
   font-size: 13px;
+}
+
+@media (max-width:785px){
+  .description{
+    max-width: 600px;
+  }
+}
+
+@media (max-width:640px){
+  .description{
+    max-width: 400px;
+  }
+
+  .description > .des-child{
+    justify-self: center;
+  }
+
+  .description > .des-button{
+    justify-self: center;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width:440px){
+  .description{
+    max-width: 280px;
+  }
 }

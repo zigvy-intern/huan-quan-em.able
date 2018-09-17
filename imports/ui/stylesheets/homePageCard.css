@@ -109,3 +109,13 @@
 .loading-wrapper{
   margin-top:0 ;
 }
+
+@media (max-width:785px){
+  .card-wrapper{
+    max-width: 600px;
+  }
+  .card-column{
+    justify-items: center;
+  }
+}
+
