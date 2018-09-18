@@ -5,14 +5,17 @@ import './courses';
 import './media';
 
 const uri = "mongodb+srv://emable1:9a9seMAVNKYWN0B4@em-able-utlze.mongodb.net/test?retryWrites=true"
-MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
+MongoClient.connect(uri, { useNewUrlParser: true }, async function(err, client) {
   if(err) {
     console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
     return;
   }
   console.log('Connected...');
   const collection = client.db("testing1").collection("testing11");
-  console.log(collection)
+  const r = await collection.insertOne({name: '123'});
+  console.log('r', r);
+  const testing11 = await collection.find().toArray();
+  console.log('testing11', testing11);
   client.close();
 }
 );
