@@ -20,6 +20,8 @@ MongoClient.connect(uri, { useNewUrlParser: true }, async function(err, client) 
 }
 );
 
+//hehe
+
 {/*if (Meteor.isServer) {
   Meteor.startup(() => {
     const users = [
