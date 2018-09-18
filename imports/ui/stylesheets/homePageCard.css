@@ -6,13 +6,15 @@
 }
 
 .card-wrapper{
-  width: 51.7%;
+  max-width: 745px;
+  width: 100%;
 }
 
 .card-column{
   display: grid;
-  grid-template-columns: repeat(3,217px);
-  grid-column-gap: 25px;
+  grid-template-columns: repeat(auto-fit,minmax(235px, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 28px;
   margin-bottom: 38px;
 }
 
@@ -22,8 +24,8 @@
 
 .course-pic-card{
   cursor: pointer;
-  width: 217px;
-  height: 144.5px;
+  width: 231.5px;
+  height: 143px;
   overflow: hidden;
 }
 
@@ -51,10 +53,9 @@
 }
 
 .draft-card > p{
-  font-family: 'Roboto';
   font-size: 7px;
   text-align: center;
-  padding-top: 4px;
+  padding-top: 5px;
   text-transform: uppercase;
 }
 
@@ -64,7 +65,8 @@
 }
 
 .middle {
-  width: 217px;
+  max-width: 231.5px;
+  width: 100%;
   height: 144.5px;
   background-color: black;
   z-index: 2;
@@ -84,9 +86,6 @@
   color: white;
 }
 
-.icon-delete{
-  color: white;
-}
 
 .middle > .child:nth-child(2){
   border-left: 1px solid #6a6e74;
@@ -110,3 +109,13 @@
 .loading-wrapper{
   margin-top:0 ;
 }
+
+@media (max-width:785px){
+  .card-wrapper{
+    max-width: 600px;
+  }
+  .card-column{
+    justify-items: center;
+  }
+}
+

@@ -124,14 +124,26 @@ input {
 	color: #8c8c8c;
 	border-left: 2.5px solid #4a90e2;
 }
-.info-wrapper {
+
+.info-wrapper-outside{
+	border:1px solid transparent;
+	height: fit-content;
 	margin-bottom: 21px;
+	border-radius: 4px;
+}
+
+.info-wrapper {
 	padding: 12px;
 	border: 1px solid #b7b7b7;
 	border-radius: 4px;
 }
-.info-wrapper:hover {
-	border: 2px solid #4a90e2;
+.info-wrapper-outside:hover {
+	border: 1px solid #4a90e2;
+	border-radius: 4px;
+}
+
+.info-wrapper-outside:hover .info-wrapper{
+	border:1px solid #4a90e2;
 	border-radius: 4px;
 }
 .info {
@@ -242,10 +254,10 @@ input {
 	border-top-right-radius: 0;
 }
 .delete-btn {
-	height: 11px;
 	position: absolute;
-	top: 14px;
+	top: 13.5px;
 	right: 16px;
+	color: white;
 }
 
 .blank-img {
@@ -262,7 +274,8 @@ input {
 	padding: 6px 8px;
 }
 .add-btn {
-	width: 11px;
+	font-size: 11px;
+	color: #4a90e2;
 }
 
 /* Location & Requirements */
@@ -272,9 +285,6 @@ input {
 	object-fit: contain;
 	overflow: hidden;
 }
-.send-btn {
-	height: 15px;
-}
 .requi-wrapper {
 	margin-bottom: 15px;
 	padding: 12px;
@@ -282,6 +292,7 @@ input {
 	border-radius: 4px;
 }
 .requi-add-wrapper {
+	margin-bottom: 15px;
 	padding: 12px;
 	border: 1px dotted #b7b7b7;
 	border-radius: 4px;
@@ -311,4 +322,3 @@ input {
 	background-color: #abbbce;
 	margin-left: 13px;
 }
-
