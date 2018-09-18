@@ -8,16 +8,17 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.55",
+    "@babel/runtime": "^7.0.0-beta.55",
     "axios": "^0.18.0",
     "cloudinary-react": "^1.0.6",
+    "lodash": "^4.17.11",
     "meteor-node-stubs": "^0.4.1",
-    "mongodb": "^3.1.6",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-google-maps": "^9.4.5",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.30.0"
   },
   "meteor": {
     "mainModule": {
@@ -25,23 +26,5 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
-  },
-  "version": "1.0.0",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zigvy-intern/huan-quan-em.able.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zigvy-intern/huan-quan-em.able/issues"
-  },
-  "homepage": "https://github.com/zigvy-intern/huan-quan-em.able#readme",
-  "description": ""
+  }
 }
