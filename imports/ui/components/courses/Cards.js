@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import Header from '../header/Header';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 
+import { Courses } from '/imports/api/courses';
+import Header from '../header/Header';
 
 class Cards extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      search: ''
+    }
+    this.renderCourse = this.renderCourse.bind(this);
+  }
+
+  renderCourse(course) {
+    return <Card key={course._id} course={course} />  
   }
 
   render() {
+    const { search } = this.state;
+    const filteredCourses = this.props.courses.filter(course => {
+      return course.name.toLowerCase().indexOf( search.toLowerCase() ) !== -1
+    })
+
     return (
       <div>
         <Header />
-
         <div className="description-wrapper">
           <div className="description">
             <div className="des-child">
@@ -24,8 +39,10 @@ class Cards extends Component {
             </div>
             <div className="des-button">
               <button>
-                <span className="icon-add"></span>
-                <span>create a new course</span>
+                <Link className="add-new-course" to="/creating">
+                  <span className="icon-add"></span>
+                  <span>create a new course</span>
+                </Link>
               </button>
             </div>
           </div>
@@ -34,141 +51,71 @@ class Cards extends Component {
         <div className="card-list">
           <div className="card-wrapper">
             <div className="card-column">
+              { filteredCourses.map(this.renderCourse) }
+            </div>
+          </div>
+        </div>
+      </div >
+    )
+  }
+}
+
+class Card extends Component {
+  render() {
+    const { course } = this.props;
+
+    return (
+      <div className="child">
+        <div className="course-card">
+          <div className="course-pic-card container">
+            <img className="image" src={course.img} alt="" />
+            <div className={`${course.status}-card`}>
+              <p>{course.status}</p>
+            </div>
+            <div className="middle">
               <div className="child">
-                <div className="course-card">
-                  <div className="course-pic-card container">
-                    <img className="image" src="./img/photo-1.jpg" alt="" />
-                    <div className="draft-card">
-                      <p>draft</p>
-                    </div>
-                    <div className="middle">
-                      <div className="child">
-                        <span className="icon-edit"></span>
-                      </div>
-                      <div className="child"></div>
-                      <div className="child">
-                        <span className="icon-delete"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="course-des-card des">
-                    Flash Photography #2
+                <span className="icon-edit"></span>
+              </div>
+              <div className="child"></div>
+              <div className="child">
+                <span className="icon-delete"></span>
+              </div>
             </div>
-                  <div className="course-cate-card category">
-                    Art / Photography
-            </div>
-                  <div className="creator">
-                    <div>
-                      <div className="creator-ava">
-                        <div>
-                          <img src="./img/creator-avatar.jpg" alt="" />
-                        </div>
-                      </div>
-                      <div className="creator-details">
-                        <div className="creator-name">
-                          Terry Richardson
-                  </div>
-                        <div className="creator-date">
-                          2 weeks ago
-                  </div>
-                      </div>
-                    </div>
-                  </div>
+          </div>
+          <div className="course-des-card des">
+            {course.name}
+          </div>
+          <div className="course-cate-card category">
+            {course.category}
+          </div>
+          <div className="creator">
+            <div>
+              <div className="creator-ava">
+                <div>
+                  <img src="./img/creator-avatar.jpg" alt="" />
                 </div>
               </div>
-              <div className="child">
-                <div className="course-card">
-                  <div className="course-pic-card container">
-                    <img src="./img/photo-2.jpg" alt="" />
-                    <div className="draft-card live">
-                      <p>live</p>
-                    </div>
-                    <div className="middle">
-                      <div className="child">
-                        <span className="icon-edit"></span>
-                      </div>
-                      <div className="child"></div>
-                      <div className="child">
-                        <span className="icon-delete"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="course-des-card des">
-                    Flash Photography
-            </div>
-                  <div className="course-cate-card category">
-                    Art / Photography
-            </div>
-                  <div className="creator">
-                    <div>
-                      <div className="creator-ava">
-                        <div>
-                          <img src="./img/creator-avatar.jpg" alt="" />
-                        </div>
-                      </div>
-                      <div className="creator-details">
-                        <div className="creator-name">
-                          Terry Richardson
-                  </div>
-                        <div className="creator-date">
-                          2 weeks ago
-                  </div>
-                      </div>
-                    </div>
-                  </div>
+              <div className="creator-details">
+                <div className="creator-name">
+                  {course.username}
                 </div>
-              </div>
-              <div className="child">
-                <div className="course-card">
-                  <div className="course-pic-card container">
-                    <img src="./img/photo-3.jpg" alt="" />
-                    <div className="draft-card live">
-                      <p>live</p>
-                    </div>
-                    <div className="middle">
-                      <div className="child">
-                        <span className="icon-edit"></span>
-                      </div>
-                      <div className="child"></div>
-                      <div className="child">
-                        <span className="icon-delete"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="course-des-card des">
-                    How to film short stories
-            </div>
-                  <div className="course-cate-card category">
-                    Art / Photography
-            </div>
-                  <div className="creator">
-                    <div>
-                      <div className="creator-ava">
-                        <div>
-                          <img src="./img/creator-avatar.jpg" alt="" />
-                        </div>
-                      </div>
-                      <div className="creator-details">
-                        <div className="creator-name">
-                          Terry Richardson
-                  </div>
-                        <div className="creator-date">
-                          2 weeks ago
-                  </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="creator-date">
+                  2 weeks ago
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
     )
   }
 }
 
+export default withTracker(() => {
+  Meteor.subscribe('courses');
 
-export default Cards;
+  return {
+    courses: Courses.find({}).fetch(),
+    currentUser: Meteor.user(),
+  };
+})(Cards);

@@ -25,7 +25,7 @@ const Routes = () => (
 		<Router>
 			<MainLayout>
 				<Switch>
-					<Route exact path="/" render={() => <Redirect to="/all-courses" />} />
+					<Route exact path="/" render={() => <Redirect to="/courses-list" />} />
 					<Route exact path="/courses-list" component={ListCourses} />
 					<Route exact path="/creating" component={Creating} />
 					<Route exact path="/courses-card" component={Cards} />

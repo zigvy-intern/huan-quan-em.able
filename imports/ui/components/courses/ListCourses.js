@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+
 import { Courses } from '/imports/api/courses';
 import Header from '../header/Header';
 
 class ListCourses extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      search: ''
+    }
     this.renderCourse = this.renderCourse.bind(this);
   }
 
-  renderCourse() {
-    return this.props.courses.map((course) => {
-      <ListCourse key={course._id} course={course} />
-    })
+  renderCourse(course) {
+    return <ListCourse key={course._id} course={course} />  
   }
 
   render() {
+    const { search } = this.state;
+    const filteredCourses = this.props.courses.filter(course => {
+      return course.name.toLowerCase().indexOf( search.toLowerCase() ) !== -1
+    })
+
     return (
       <div>
         <Header />
@@ -31,8 +39,10 @@ class ListCourses extends Component {
             </div>
             <div className="des-button">
               <button>
-                <span className="icon-add"></span>
-                <span>create a new course</span>
+                <Link className="add-new-course" to="/creating">
+                  <span className="icon-add"></span>
+                  <span>create a new course</span>
+                </Link>
               </button>
             </div>
           </div>
@@ -65,7 +75,7 @@ class ListCourses extends Component {
         </div>
 
         <div className="course-list">
-          {this.renderCourse()}
+          { filteredCourses.map(this.renderCourse) }
         </div>
 
         <div className="loading-wrapper">
@@ -81,6 +91,7 @@ class ListCourses extends Component {
 class ListCourse extends Component {
   render() {
     const { course } = this.props;
+
     return (
       <div className="course">
         <div className="child course-pic">
@@ -111,7 +122,7 @@ class ListCourse extends Component {
             </div>
             <div className="creator-details">
               <div className="creator-name">
-                {course.owner}
+                {course.username}
               </div>
               <div className="creator-date">
                 2 weeks ago
