@@ -12,12 +12,12 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   'media.insert' (img) {
+    console.log(img)
     Media.insert({
       img,
-      cover: false,
       createdAt: new Date(),      
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
+      //owner: this.userId,
+      //username: Meteor.users.findOne(this.userId).username,
     });
   },
   'media.remove'(mediaId) {
@@ -36,17 +36,4 @@ Meteor.methods({
     
     throw new Meteor.Error(403, "Not authorized");*/}
   },
-  'media.cover'(mediaId) {
-    check(mediaId, String);
-
-    Media.update(
-      { cover: true },
-      { $set: { cover: false } }
-    )
-
-    Media.update(
-      { _id: mediaId },
-      { $set: { cover: true } }
-    )
-  }
 });

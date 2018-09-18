@@ -5,7 +5,6 @@ body, html, p, span{
 
 .blue-top-wrapper{
   background-color: #4a90e2;
-  max-width: 745px;
   width: 100%;
   height: 35px;
   display: grid;
@@ -16,7 +15,8 @@ body, html, p, span{
   display: grid;
   grid-template-columns: repeat(2,auto);
   height: 100%;
-  width: 51.7%;
+  max-width: 745px;
+  width: 100%;
   color: white;
 }
 
@@ -48,7 +48,7 @@ padding-top: 11%;
 .banner{
   display: grid;
   background-image: url('../img/banner.jpg');
-  background-size: 1366px 400px;
+  background-size: 100% 160%;
   background-repeat: no-repeat;
   height: 357px;
   width: 100%;
@@ -56,13 +56,15 @@ padding-top: 11%;
 }
 
 .my-courses{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: white;
   letter-spacing: .5px;
   width: 51.7%;
 }
 
 .my-courses > div:nth-child(1){
-  padding-top: 185px;
   font-size: 30px;
   font-weight: 300;
 }
@@ -83,21 +85,19 @@ padding-top: 11%;
 .white-top-wrapper{
   height: 55px;
   background-color: white;
-  position: absolute;
-  top: 35px;
-  left: 0;
   width:100%;
   display: grid;
   justify-items: center;
 }
 
 .white-top{
-  height: 98%;
+  height: 100%;
   font-size: 10px;
   font-weight: 500;
   display: grid;
   grid-template-columns: repeat(10,auto);
-  width: 51.7%;
+  max-width: 745px;
+  width: 100%;
 }
 
 .white-top > .child{
@@ -120,24 +120,65 @@ padding-top: 11%;
   margin-top: 18px;
 }
 .white-top > .child:nth-child(9){
-  justify-self: right;
+  justify-self: center;
   height: 15px;
   width:15px;
   border: transparent;
   margin-top: 20px;
-  margin-left: 50px;
+  display: none;
 }
 
 .white-top > .child:nth-child(10){
   justify-self: right;
+  height: 15px;
+  width:15px;
+  border: transparent;
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
+.white-top > .child:nth-child(11){
+  justify-self: right;
   margin-top: 20px;
   height: 15px;
   width:15px;
   border: transparent;
 }
 
+.white-top > .child:nth-child(11):after{
+  content: '12';
+  position: relative;
+  height: 10.5px;
+  width: 14px;
+  background-color: #ff3c00;
+  font-size: 7px;
+  color: white;
+  border-radius: 20px;
+  font-weight: 700;
+  text-align: center;
+  padding:1px 3px;
+  bottom: 7.5px;
+  right: 5px;
+}
 
-@media (max-width: 843px){
+
+#drop-down-list{
+  position: relative;
+  width: 280px;
+  display: none;
+  flex-direction: column;
+  top: 10px;
+  left: -20px;
+  background-color: white;
+  padding-bottom: 20px;
+}
+
+#drop-down-list > .child{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+/* @media (max-width: 843px){
   .blue-top-wrapper{
     height: 45px;
   }
@@ -149,9 +190,9 @@ padding-top: 11%;
       padding-top: 9.25%;
   }
 
-}
+} */
 
-@media (max-width: 568px){
+/* @media (max-width: 568px){
 
   .blue-top{
     width: 90%;
@@ -171,9 +212,9 @@ padding-top: 11%;
       padding-top: 12%;
   }
 
-}
+} */
 
-@media (max-width: 568px){
+/* @media (max-width: 568px){
   .blue-top > .child{
     font-size: 12px;
   }
@@ -185,6 +226,88 @@ padding-top: 11%;
   .blue-top > .child:nth-child(1) > p{
     padding-top: 13%;
   }
+} */
+
+@media (max-width:1366px){
+  .banner{
+    background-size: 1366px 400px;
+  }
 }
 
-@media (max-width: 568px)
+
+@media (max-width:785px){
+  .blue-top{
+    max-width: 600px;
+  }
+
+  .white-top{
+    max-width: 600px;
+  }
+
+  .banner{
+    background-size: 1000px 310px;
+    height: 260px;
+  }
+}
+
+@media (max-width:640px){
+
+  .white-top{
+    max-width: 400px;
+  }
+
+  #nav-1, #nav-2, #nav-3, #nav-3, #nav-4, #nav-5, #nav-6, #nav-7{
+    display: none;
+  }
+
+  #icon-more{
+    display: block;
+    margin-left: 20px;
+  }
+
+  .white-top > .child:nth-child(10){
+    padding-left: 230px;
+  }
+
+  .white-top > .child:nth-child(11){
+    padding-left: 30px;
+  }
+  .blue-top{
+    max-width: 400px;
+  }
+
+  .banner{
+    height: 180px;
+    background-size: 715px 220px;
+  }
+}
+
+@media (max-width:440px){
+  .blue-top{
+    max-width: 280px;
+  }
+  .white-top{
+    max-width: 280px;
+  }
+
+  .white-top > .child:nth-child(10){
+    padding-left: 100px;
+  }
+
+  #drop-down-list{
+    width: 150px;
+  }
+  .banner{
+    background-size: 460px 145px;
+    height: 145px;
+  }
+
+
+  .my-courses > div:nth-child(2){
+    margin-top: 7px;
+  }
+
+  .my-courses > div:nth-child(3){
+    margin-top: 15px;
+  }
+}

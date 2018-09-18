@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../icon/icomoon.eot?fylhbx');
-  src:  url('../icon/icomoon.eot?fylhbx#iefix') format('embedded-opentype'),
-    url('../icon/icomoon.ttf?fylhbx') format('truetype'),
-    url('../icon/icomoon.woff?fylhbx') format('woff'),
-    url('../icon/icomoon.svg?fylhbx#icomoon') format('svg');
+  src:  url('/public/icons/icomoon.eot?7lk0lc');
+  src:  url('/public/icons/icomoon.eot?7lk0lc#iefix') format('embedded-opentype'),
+    url('/public/icons/icomoon.ttf?7lk0lc') format('truetype'),
+    url('/public/icons/icomoon.woff?7lk0lc') format('woff'),
+    url('/public/icons/icomoon.svg?7lk0lc#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,7 @@
 
 .icon-arrow-down:before {
   content: "\e901";
+  color: #fff;
 }
 .icon-add:before {
   content: "\e902";
@@ -38,20 +39,21 @@
 }
 .icon-loading:before {
   content: "\e905";
-
 }
 .icon-noti:before {
   content: "\e906";
-
+  color: #4a90e2;
 }
 .icon-play:before {
   content: "\e907";
 }
 .icon-search:before {
   content: "\e908";
+  color: #4a90e2;
 }
 .icon-send:before {
   content: "\e909";
+  color: #4a90e2;
 }
 .icon-mouse:before {
   content: "\e900";
