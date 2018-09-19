@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
+  deleteCourse() {
+    Meteor.call('courses.remove', this.props.course._id, this.props.course.owner)
+  }
+
   render() {
     const { course } = this.props;
 
@@ -15,11 +20,11 @@ export default class Card extends Component {
             </div>
             <div className="middle">
               <div className="child">
-                <span className="icon-edit"></span>
+                <Link className="icon-edit" to={`/courses-list/${course._id}`}></Link>
               </div>
               <div className="child"></div>
-              <div className="child">
-                <span className="icon-delete"></span>
+              <div onClick={this.deleteCourse.bind(this)} className="child">
+                <span className="icon-delete-gray">X</span>
               </div>
             </div>
           </div>

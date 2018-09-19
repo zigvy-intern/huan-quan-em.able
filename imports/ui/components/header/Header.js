@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Accounts from '/imports/ui/components/accounts/Accounts'
 
 export default class Header extends Component {
 
@@ -47,7 +48,8 @@ export default class Header extends Component {
             </div>
             <div className="child">
               <p>
-                <span>Howdy</span> Terry Richardson <span className="icon-arrow-down"></span>
+                <span>Howdy</span> 
+                <Accounts />
               </p>
             </div>
           </div>
