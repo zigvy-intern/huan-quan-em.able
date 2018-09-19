@@ -36,13 +36,13 @@
   cursor: pointer;
 }
 
-.des-button > button > span:nth-child(1){
+.add-new-course > span:nth-child(1){
   vertical-align: middle;
   font-size: 7px;
   color: white;
 }
 
-.des-button > button > span:nth-child(2){
+.add-new-course >  span:nth-child(2){
   vertical-align: middle;
   font-weight: bold;
   font-size: 9px;

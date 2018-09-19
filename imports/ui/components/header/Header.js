@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
 
@@ -58,9 +59,11 @@ export default class Header extends Component {
               <img src="/img/logo.png" alt="" />
             </div>
             <div onClick={() => this.changeOnClick("1")} id="nav-1" className="child">
-              <p>
-                My Courses
-              </p>
+              <Link to='/courses-list'>
+                <p>
+                  My Courses
+                </p>
+              </Link>
             </div>
             <div onClick={() => this.changeOnClick("2")} id="nav-2" className="child">
               <p>
@@ -68,9 +71,11 @@ export default class Header extends Component {
               </p>
             </div>
             <div onClick={() => this.changeOnClick("3")} id="nav-3" className="child">
-              <p>
-                Dashboard
-              </p>
+              <Link to='/courses-card'>
+                <p>
+                  Dashboard
+                </p>
+              </Link>
             </div>
             <div onClick={() => this.changeOnClick("4")} id="nav-4" className="child">
               <p>
@@ -96,9 +101,11 @@ export default class Header extends Component {
               <span className="icon-list-with-bullets"></span>
               <div id="drop-down-list">
                 <div onClick={() => this.changeOnClick("1")} className="child">
-                  <p>
-                    My Courses
-              </p>
+                  <Link className="white-top-nav" to='/courses-list'>
+                    <p>
+                      My Courses
+                  </p>
+                  </Link>
                 </div>
                 <div onClick={() => this.changeOnClick("2")} className="child">
                   <p>
@@ -106,9 +113,11 @@ export default class Header extends Component {
               </p>
                 </div>
                 <div onClick={() => this.changeOnClick("3")} className="child">
-                  <p>
-                    Dashboard
-              </p>
+                  <Link className="white-top-nav" to='/courses-card'>
+                    <p>
+                      Dashboard
+                    </p>
+                  </Link>
                 </div>
                 <div onClick={() => this.changeOnClick("4")} className="child">
                   <p>

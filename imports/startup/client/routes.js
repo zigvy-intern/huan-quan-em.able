@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-
 import Creating from '/imports/ui/components/creating/Creating';
 import ListCourses from '/imports/ui/components/courses/ListCourses';
 import Cards from '/imports/ui/components/courses/Cards';
@@ -25,7 +24,7 @@ const Routes = () => (
 		<Router>
 			<MainLayout>
 				<Switch>
-					<Route exact path="/" render={() => <Redirect to="/all-courses" />} />
+					<Route exact path="/" render={() => <Redirect to="/courses-list" />} />
 					<Route exact path="/courses-list" component={ListCourses} />
 					<Route exact path="/creating" component={Creating} />
 					<Route exact path="/courses-card" component={Cards} />
