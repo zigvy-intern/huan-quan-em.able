@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 import './courses';
 import './media';
 
-const uri = "mongodb+srv://emable1:9a9seMAVNKYWN0B4@em-able-utlze.mongodb.net/test?retryWrites=true"
+const uri = "mongodb+srv://emable1:8fgou1G8FPfXVL1w@em-able-utlze.mongodb.net/test?retryWrites=true"
 MongoClient.connect(uri, { useNewUrlParser: true }, async function(err, client) {
   if(err) {
     console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
