@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import axios from 'axios';
 
 import { Media } from '/imports/api/media';
 import Header from '/imports/ui/components/header/Header';
@@ -27,22 +26,27 @@ class Creating extends Component {
     this.createDraftCourse = this.createDraftCourse.bind(this);
     this.addRequirement = this.addRequirement.bind(this);
     this.renderRequirement = this.renderRequirement.bind(this);
+    this.onChangeClose = this.onChangeClose.bind(this);
+    this.onChangeModalPicture = this.onChangeModalPicture.bind(this);
   }
+
+
 
   uploadMedia() {
     cloudinary.openUploadWidget({
       cloud_name: 'rai3399', upload_preset: 'bdz2m5kq', tags: ['em.able']
     },
       (error, result) => {
-        const img = `https://res.cloudinary.com/rai3399/image/upload/w_700,h_496,c_fill/${result[0].public_id}.jpg`
-        Meteor.call('media.insert', img)
+        const img = `https://res.cloudinary.com/rai3399/image/upload/w_700,h_496,c_fill/${result[0].public_id}.jpg`;
+        const cover = false;
+        Meteor.call('media.insert', img, cover)
       }
     );
   }
 
   renderMedia() {
     return this.props.media.map((media) => (
-      <Image key={media._id} media={media} />
+      <Image key={media._id} media={media} retrieveSource={this.onChangeModalPicture} />
     ));
   }
 
@@ -58,6 +62,15 @@ class Creating extends Component {
       requirements.push(<Requirement key={`requirement${i}`} index={i} />)
     }
     return <div>{requirements}</div>
+  }
+
+  onChangeModalPicture(primitiveImgId) {
+    document.getElementById("modal-img-review").style.display = "block";
+    document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
+  }
+
+  onChangeClose() {
+    document.getElementById("modal-img-review").style.display = "none";
   }
 
   createLiveCourse() {
@@ -303,11 +316,14 @@ class Creating extends Component {
             <button
               onClick={this.createDraftCourse}
               className="bottom-btn bold"
-              id="bottom-btn2"
-            >
+              id="bottom-btn2">
               Save as draft
             </button>
           </div>
+        </div>
+        <div id="modal-img-review" className="modal">
+          <span onClick={() => this.onChangeClose()} className="close">&times;</span>
+          <img className="modal-content" id="img-modal" />
         </div>
       </div>
     )
@@ -346,12 +362,16 @@ class Image extends Component {
     Meteor.call('media.remove', this.props.media._id); //this.props.comment.owner
   }
 
+  onChangeRetrieveImgSrc(imgSrc) {
+    this.props.retrieveSource(imgSrc);
+  }
+
   render() {
     const { media } = this.props;
     if (media.cover) {
       return (
-        <div className="img-wrapper flex-column" id="img-cover">
-          <img className="cover-img" src={media.img} alt="cover" />
+        <div className="creating-img img-wrapper flex-column" id="img-cover">
+          <img id={media._id} className="cover-img" onClick={() => this.onChangeRetrieveImgSrc(media._id)} src={media.img} alt="cover" />
           <button>
             <span className="icon-delete delete-btn" />
           </button>
@@ -360,8 +380,8 @@ class Image extends Component {
       )
     }
     return (
-      <div className="img-wrapper flex-column">
-        <img className="cover-img" src={media.img} alt="cover" />
+      <div className="creating-img img-wrapper flex-column">
+        <img id={media._id} className="cover-img" onClick={() => this.onChangeRetrieveImgSrc(media._id)} src={media.img} alt="cover" />
         <button onClick={this.deleteMedia}>
           <span className="icon-delete delete-btn" />
         </button>

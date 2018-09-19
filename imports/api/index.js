@@ -3,22 +3,22 @@ import { MongoClient } from 'mongodb';
 import './courses';
 import './media';
 
-const uri = "mongodb+srv://emable1:DFJk78MEUlnsBrVl@em-able-utlze.mongodb.net/test?retryWrites=true";
+// const uri = "mongodb+srv://emable1:DFJk78MEUlnsBrVl@em-able-utlze.mongodb.net/test?retryWrites=true";
 
-MongoClient.connect(uri, { useNewUrlParser: true }, async function (err, client) {
-  if (err) {
-    console.log('Error occurred while connecting to MongoDB Atlas...\n', err);
-    return;
-  }
-  console.log('Connected...');
-  const collection = client.db("em-ableDB");
-  const courseTbl = await collection.collection("courseTbl").find().toArray();
-  const mediaTbl = await collection.collection("mediaTbl").find().toArray();
-  console.log('courseTbl', courseTbl);
-  console.log('mediaTbl', mediaTbl);
-  client.close();
-}
-);
+// MongoClient.connect(uri, { useNewUrlParser: true }, async function (err, client) {
+//   if (err) {
+//     console.log('Error occurred while connecting to MongoDB Atlas...\n', err);
+//     return;
+//   }
+//   console.log('Connected...');
+//   const collection = client.db("em-ableDB");
+//   const courseTbl = await collection.collection("courseTbl").find().toArray();
+//   const mediaTbl = await collection.collection("mediaTbl").find().toArray();
+//   console.log('courseTbl', courseTbl);
+//   console.log('mediaTbl', mediaTbl);
+//   client.close();
+// }
+// );
 
 // if (Meteor.isServer) {
 //   Meteor.startup(() => {

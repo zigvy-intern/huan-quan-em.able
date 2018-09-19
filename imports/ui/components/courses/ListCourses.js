@@ -8,16 +8,22 @@ import Header from '../header/Header';
 class ListCourses extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      search: '',
+    }
     this.renderCourse = this.renderCourse.bind(this);
   }
 
-  renderCourse() {
-    return this.props.courses.map((course) => {
-      <ListCourse key={course._id} course={course} />
-    })
+  renderCourse(course) {
+    return <ListCourse key={course._id} course={course} />
   }
 
   render() {
+    const { search } = this.state;
+    const filteredCourses = this.props.courses.filter(course => {
+      return course.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    })
+
     return (
       <div>
         <Header />
@@ -68,7 +74,7 @@ class ListCourses extends Component {
         </div>
 
         <div className="course-list">
-          {this.renderCourse()}
+          {filteredCourses.map(this.renderCourse)}
         </div>
 
         <div className="loading-wrapper">
@@ -86,9 +92,8 @@ class ListCourse extends Component {
     const { course } = this.props;
     return (
       <div className="course">
-        <div className="child course-pic">
-          <div>
-          </div>
+        <div className="child ">
+          <img className="course-pic" src={course.img} alt={course.name} />
         </div>
         <div className="child course-des">
           <div>
@@ -123,7 +128,7 @@ class ListCourse extends Component {
           </div>
         </div>
         <div className="child status">
-          <p className={`status-wrapper ${course.status}`}>
+          <p className={`status-wrapper draft ${course.status}`}>
             {course.status}
           </p>
         </div>
@@ -141,7 +146,7 @@ class ListCourse extends Component {
             </div>
             <div></div>
             <div className="remove">
-              <span className="icon-delete"></span>
+              <span className="icon-delete-gray"></span>
             </div>
           </div>
         </div>

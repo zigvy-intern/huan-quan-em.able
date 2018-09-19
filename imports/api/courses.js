@@ -11,8 +11,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'courses.insert' (name, category, subCategory, subject, price, 
-                    level, size, desc, status, code, img) {
+  'courses.insert'(name, category, subCategory, subject, price,
+    level, size, desc, status, code, img) {
     check(name, String);
     check(category, String);
     check(subCategory, String);
@@ -25,9 +25,9 @@ Meteor.methods({
     check(code, String);
     check(img, String);
 
-    if (!this.userId) {
-      throw new Meteor.Error(403, "Not authorized");
-    }
+    //if (!this.userId) {
+    // throw new Meteor.Error(403, "Not authorized");
+    //}
 
     Courses.insert({
       name,
@@ -41,9 +41,9 @@ Meteor.methods({
       status,
       code,
       img,
-      createdAt: new Date(),      
+      createdAt: new Date(),
       owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
+      //username: Meteor.users.findOne(this.userId).username,
     });
   },
 });

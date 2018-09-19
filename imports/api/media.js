@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { MongoClient } from 'mongodb';
 
 export const Media = new Mongo.Collection('media');
 
@@ -11,14 +12,24 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'media.insert' (img) {
-    console.log(img)
+  'media.insert'(img, cover) {
     Media.insert({
       img,
-      createdAt: new Date(),      
+      cover,
+      createdAt: new Date(),
       //owner: this.userId,
       //username: Meteor.users.findOne(this.userId).username,
     });
+  },
+  'media.cover'(coverId) {
+    Media.update(
+      { cover: true },
+      { $set: { cover: false } }
+    );
+    Media.update(
+      { _id: coverId },
+      { $set: { cover: true } }
+    )
   },
   'media.remove'(mediaId) {
     check(mediaId, String);

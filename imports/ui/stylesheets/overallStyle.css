@@ -61,7 +61,8 @@ padding-top: 11%;
   justify-content: center;
   color: white;
   letter-spacing: .5px;
-  width: 51.7%;
+  max-width: 745px;
+  width: 100%;
 }
 
 .my-courses > div:nth-child(1){
@@ -111,6 +112,7 @@ padding-top: 11%;
 }
 
 .white-top > .child  p{
+  color: black;
   margin-top: 20px;
 }
 
@@ -159,6 +161,59 @@ padding-top: 11%;
   padding:1px 3px;
   bottom: 7.5px;
   right: 5px;
+}
+
+#search-bar{
+  box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+  display: none;
+  position: relative;
+  top: 24px;
+  background-color: white;
+  width: 170px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 10px;
+}
+
+#search-bar input{
+  color: #676767;
+  padding: 5px 0px 7px 10px;
+  width: 100%;
+  outline: none;
+}
+
+#search-bar input::placeholder{
+  font-size: 10px;
+  color: #676767;
+  font-weight: 600;
+}
+
+#search-bar input::-webkit-search-decoration,
+::-webkit-search-cancel-button,
+::-webkit-search-results-button,
+::-webkit-search-results-decoration {
+   display: none; 
+  }
+
+/* .search-transform{
+  top: 14px;
+  transition: all 5s ease;
+} */
+
+@keyframes slide {
+  from{
+    transform: translate(0px, -10px);
+  }
+  to{
+    transform: translate(0px, 0px);
+  }
+}
+
+.slide-animation {
+  animation-name: slide;
+  animation-timing-function: ease-in-out;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
 }
 
 
@@ -238,6 +293,11 @@ padding-top: 11%;
   }
 }
 
+@media (max-width:1015px){
+  #search-bar{
+    right: 160px;
+  }
+}
 
 @media (max-width:785px){
   .blue-top{
