@@ -166,6 +166,11 @@ class Cards extends Component {
             </div>
           </div>
         </div>
+        <div className="loading-wrapper">
+          <div className="loading">
+            <span className="icon-loading"></span> <span>Loading more Courses...</span>
+          </div>
+        </div>
       </div>
     )
   }

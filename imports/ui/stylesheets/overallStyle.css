@@ -312,6 +312,9 @@ padding-top: 11%;
     background-size: 1000px 310px;
     height: 260px;
   }
+  .my-courses{
+    max-width: 600px;
+  }
 }
 
 @media (max-width:640px){
@@ -344,6 +347,12 @@ padding-top: 11%;
     height: 180px;
     background-size: 715px 220px;
   }
+
+  .my-courses{
+    max-width: 400px;
+  }
+
+  
 }
 
 @media (max-width:440px){
@@ -367,6 +376,7 @@ padding-top: 11%;
     height: 145px;
   }
 
+  .my-courses{max-width: 280px;}
 
   .my-courses > div:nth-child(2){
     margin-top: 7px;

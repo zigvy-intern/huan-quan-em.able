@@ -146,7 +146,6 @@
 .course-cate-card{
   margin-top: 14px;
 }
-
 .creator > div{
   cursor: pointer;
   display: grid;
@@ -270,6 +269,21 @@
   .description{
     max-width: 600px;
   }
+  .title-list{
+    max-width: 600px;
+  }
+  .course-list > .course{
+    max-width: 600px;
+  }
+  .creator{
+    margin-left: 10px;
+  }
+  .status{
+    margin-left: 10px;
+  }
+  .slot{
+    margin-left: 10px;
+  }
 }
 
 @media (max-width:640px){
@@ -284,6 +298,16 @@
   .description > .des-button{
     justify-self: center;
     margin-top: 20px;
+  }
+  .title-list{
+    display: none;
+  }
+  
+}
+
+@media (max-width:480px){
+  .course-list > .course{
+    grid-template-columns: 15% 31% 3.5% 20.1% 9.8% 10.5% auto;
   }
 }
 
