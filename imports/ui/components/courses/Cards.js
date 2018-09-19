@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import Header from '../header/Header';
 
 
@@ -9,9 +9,10 @@ class Cards extends Component {
   }
 
   render() {
+    const history = this.props.history;
     return (
       <div>
-        <Header />
+        <Header history={history} />
 
         <div className="description-wrapper">
           <div className="description">
@@ -24,8 +25,10 @@ class Cards extends Component {
             </div>
             <div className="des-button">
               <button>
-                <span className="icon-add"></span>
-                <span>create a new course</span>
+                <Link className="add-new-course" to="/creating">
+                  <span className="icon-add"></span>
+                  <span>create a new course</span>
+                </Link>
               </button>
             </div>
           </div>
@@ -80,7 +83,7 @@ class Cards extends Component {
                 <div className="course-card">
                   <div className="course-pic-card container">
                     <img src="./img/photo-2.jpg" alt="" />
-                    <div className="draft-card live">
+                    <div className="draft-card live-card">
                       <p>live</p>
                     </div>
                     <div className="middle">
@@ -122,7 +125,7 @@ class Cards extends Component {
                 <div className="course-card">
                   <div className="course-pic-card container">
                     <img src="./img/photo-3.jpg" alt="" />
-                    <div className="draft-card live">
+                    <div className="draft-card live-card">
                       <p>live</p>
                     </div>
                     <div className="middle">
@@ -163,8 +166,6 @@ class Cards extends Component {
             </div>
           </div>
         </div>
-
-
       </div>
     )
   }

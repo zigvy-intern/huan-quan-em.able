@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Courses } from '/imports/api/courses';
@@ -31,8 +32,10 @@ class ListCourses extends Component {
             </div>
             <div className="des-button">
               <button>
-                <span className="icon-add"></span>
-                <span>create a new course</span>
+                <Link className="add-new-course" to="/creating">
+                  <span className="icon-add"></span>
+                  <span>create a new course</span>
+                </Link>
               </button>
             </div>
           </div>

@@ -110,11 +110,11 @@ padding-top: 11%;
   border-bottom: 1.5px solid #4a90e2;
 }
 
-.white-top > .child > p{
+.white-top > .child  p{
   margin-top: 20px;
 }
 
-.white-top > .child:nth-child(1) > img{
+.white-top > .child:nth-child(1)  img{
   height: 17px;
   width:76.5px;
   margin-top: 18px;
@@ -176,6 +176,10 @@ padding-top: 11%;
 #drop-down-list > .child{
   margin-left: 20px;
   margin-top: 20px;
+}
+
+.white-top-nav{
+  color: black;
 }
 
 /* @media (max-width: 843px){
@@ -296,6 +300,7 @@ padding-top: 11%;
 
   #drop-down-list{
     width: 150px;
+    color: black;
   }
   .banner{
     background-size: 460px 145px;
