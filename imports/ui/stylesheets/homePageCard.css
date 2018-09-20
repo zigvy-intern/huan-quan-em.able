@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .card-list{
   margin-top: 36px;
   width: 100%;
@@ -119,3 +120,118 @@
   }
 }
 
+=======
+.card-list{
+  margin-top: 36px;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.card-wrapper{
+  max-width: 745px;
+  width: 100%;
+}
+
+.card-column{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(235px, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 28px;
+  margin-bottom: 38px;
+}
+
+.course-des-card{
+  margin-top: 25px;
+}
+
+.course-pic-card{
+  cursor: pointer;
+  width: 231.5px;
+  height: 143px;
+  overflow: hidden;
+}
+
+.course-pic-card img{
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.draft-card{
+  background-color: #fff;
+  position: relative;
+  bottom: 96%;
+  left: 81%;
+  z-index: 1;
+  width: 35px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+.draft-card > p{
+  font-size: 7px;
+  text-align: center;
+  padding-top: 5px;
+  text-transform: uppercase;
+}
+
+.live-card{
+  background-color: #4a90e2;
+  color: white;
+}
+
+.middle {
+  max-width: 231.5px;
+  width: 100%;
+  height: 144.5px;
+  background-color: black;
+  z-index: 2;
+  transition: .5s ease;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 112%;
+  border-radius: 5px;
+  color: white;
+  flex-direction: row;
+}
+
+
+.middle > .child:nth-child(2){
+  border-left: 1px solid #6a6e74;
+  height: 21.5px;
+  width: 0px;
+  margin: 0 22px;
+}
+
+.container:hover .middle {
+  opacity: .7;
+}
+
+.loading-wrapper{
+  margin-top:0 ;
+}
+
+.on-hover-white:hover{
+  color: white
+}
+
+@media (max-width:785px){
+  .card-wrapper{
+    max-width: 600px;
+  }
+  .card-column{
+    justify-items: center;
+  }
+}
+
+>>>>>>> Stashed changes

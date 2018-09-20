@@ -6,6 +6,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Media } from '/imports/api/media';
 import Header from '/imports/ui/components/header/Header';
 import Map from './Map';
+<<<<<<< Updated upstream
+=======
+import { Image } from './Media';
+import { Requirement } from './Requirement';
+import Popup from '../popup/Popup.js';
+let temporaryStatus = '';
+>>>>>>> Stashed changes
 
 class Creating extends Component {
   constructor(props) {
@@ -18,7 +25,8 @@ class Creating extends Component {
       level: '',
       size: '',
       status: '',
-      index: 0
+      index: 0,
+      shouldShowPopup: false
     }
     this.uploadMedia = this.uploadMedia.bind(this);
     this.renderMedia = this.renderMedia.bind(this);
@@ -123,12 +131,28 @@ class Creating extends Component {
     ReactDOM.findDOMNode(this.refs.nameInput).value = '';
     ReactDOM.findDOMNode(this.refs.priceInput).value = '';
     ReactDOM.findDOMNode(this.refs.descInput).value = '';
+    this.setState({
+      shouldShowPopup: true,
+      courseNameTemp: name,
+      courseStatusTemp: status,
+    })
   }
 
   render() {
     return (
       <div>
         <Header />
+        <div className="banner">
+          <div className="my-courses">
+            <div>
+              My Courses
+            </div>
+            <div>
+              3 Categories &#8901; 6 Courses
+            </div>
+            <div></div>
+          </div>
+        </div>
         <div className="main">
           <div className="title light">Create new Course</div>
           <div className="flex-column component-wrapper compulsory-info">
@@ -277,7 +301,7 @@ class Creating extends Component {
               </div>
               <div className="blank-img flex-column center">
                 <button className="add-btn-wrapper">
-                  <span onClick={this.uploadMedia} className="add-btn" className="icon-add-blue"></span>
+                  <span onClick={this.uploadMedia} className="icon-add add-btn"></span>
                 </button>
               </div>
             </div>
@@ -309,8 +333,7 @@ class Creating extends Component {
             <button
               onClick={this.createLiveCourse}
               className="bottom-btn bold"
-              id="bottom-btn1"
-            >
+              id="bottom-btn1">
               Create
             </button>
             <button
@@ -325,6 +348,7 @@ class Creating extends Component {
           <span onClick={() => this.onChangeClose()} className="close">&times;</span>
           <img className="modal-content" id="img-modal" />
         </div>
+        {this.state.shouldShowPopup && <Popup courseName={this.state.courseNameTemp} status={this.state.courseStatusTemp} option="create" />}
       </div>
     )
   }

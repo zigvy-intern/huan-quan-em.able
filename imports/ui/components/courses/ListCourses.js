@@ -15,7 +15,11 @@ class ListCourses extends Component {
   }
 
   renderCourse(course) {
+<<<<<<< Updated upstream
     return <ListCourse key={course._id} course={course} />
+=======
+    return <List key={course._id} course={course} />
+>>>>>>> Stashed changes
   }
 
   render() {
@@ -27,6 +31,17 @@ class ListCourses extends Component {
     return (
       <div>
         <Header />
+        <div className="banner">
+          <div className="my-courses">
+            <div>
+              My Courses
+            </div>
+            <div>
+              3 Categories &#8901; 6 Courses
+            </div>
+            <div></div>
+          </div>
+        </div>
         <div className="description-wrapper">
           <div className="description">
             <div className="des-child">

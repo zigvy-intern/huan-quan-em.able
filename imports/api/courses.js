@@ -46,4 +46,50 @@ Meteor.methods({
       //username: Meteor.users.findOne(this.userId).username,
     });
   },
+  'courses.edit'(courseId, name, category, subCategory, subject, price,
+    level, size, desc, status, img) {
+    check(courseId, String)
+    check(status, String);
+    check(img, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error(403, "Not authorized");
+    }
+
+    Courses.update(
+      { _id: courseId },
+      {
+        name: name,
+        category: category,
+        subCategory: subCategory,
+        subject: subject,
+        price: price,
+        level: level,
+        size: size,
+        desc: desc,
+        status: status,
+        img: img
+      }
+    );
+  },
+  'courses.get'(courseId) {
+    check(courseId, String);
+    const result = Courses.findOne({ _id: courseId });
+
+    return result;
+  },
+  'courses.remove'(courseId, owner) {
+    check(courseId, String);
+    check(owner, String);
+
+    if (Roles.userIsInRole(this.userId, ['admin'])) {
+      Courses.remove(courseId);
+    }
+
+    if (owner == this.userId) {
+      Courses.remove(courseId);
+    }
+
+    throw new Meteor.Error(403, "Not authorized");
+  }
 });

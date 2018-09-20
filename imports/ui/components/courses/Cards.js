@@ -12,8 +12,23 @@ class Cards extends Component {
     const history = this.props.history;
     return (
       <div>
+<<<<<<< Updated upstream
         <Header history={history} />
 
+=======
+        <Header />
+        <div className="banner">
+          <div className="my-courses">
+            <div>
+              My Courses
+            </div>
+            <div>
+              3 Categories &#8901; 6 Courses
+            </div>
+            <div></div>
+          </div>
+        </div>
+>>>>>>> Stashed changes
         <div className="description-wrapper">
           <div className="description">
             <div className="des-child">

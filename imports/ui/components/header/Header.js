@@ -62,7 +62,12 @@ export default class Header extends Component {
             </div>
             <div className="child">
               <p>
+<<<<<<< Updated upstream
                 <span>Howdy</span> Terry Richardson <span className="icon-arrow-down"></span>
+=======
+                <span>Howdy </span>
+                <Accounts />
+>>>>>>> Stashed changes
               </p>
             </div>
           </div>
@@ -167,18 +172,6 @@ export default class Header extends Component {
             <div className="child">
               <span className="icon-noti"></span>
             </div>
-          </div>
-        </div>
-
-        <div className="banner">
-          <div className="my-courses">
-            <div>
-              My Courses
-            </div>
-            <div>
-              3 Categories &#8901; 6 Courses
-            </div>
-            <div></div>
           </div>
         </div>
       </div>
