@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 export default class Card extends Component {
+  deleteCourse() {
+    Meteor.call('courses.remove', this.props.course._id, this.props.course.owner)
+  }
+
   render() {
     const { course } = this.props;
+    const time = moment(course.createdAt).fromNow();
 
     return (
       <div className="child">
@@ -15,13 +22,6 @@ export default class Card extends Component {
             </div>
             <div className="middle">
               <div className="child">
-<<<<<<< Updated upstream
-                <span className="icon-edit"></span>
-              </div>
-              <div className="child"></div>
-              <div className="child">
-                <span className="icon-delete"></span>
-=======
                 <Link to={`/courses-list/${course._id}`}>
                   <span className="icon-edit on-hover-white"></span>
                 </Link>
@@ -29,7 +29,6 @@ export default class Card extends Component {
               <div className="child"></div>
               <div onClick={this.deleteCourse.bind(this)} className="child">
                 <span className="icon-delete on-hover-white"></span>
->>>>>>> Stashed changes
               </div>
             </div>
           </div>
@@ -51,7 +50,7 @@ export default class Card extends Component {
                   {course.username}
                 </div>
                 <div className="creator-date">
-                  2 weeks ago
+                  {time}
                 </div>
               </div>
             </div>

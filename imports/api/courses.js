@@ -25,9 +25,9 @@ Meteor.methods({
     check(code, String);
     check(img, String);
 
-    //if (!this.userId) {
-    // throw new Meteor.Error(403, "Not authorized");
-    //}
+    if (!this.userId) {
+      throw new Meteor.Error(403, "Not authorized");
+    }
 
     Courses.insert({
       name,
@@ -43,7 +43,7 @@ Meteor.methods({
       img,
       createdAt: new Date(),
       owner: this.userId,
-      //username: Meteor.users.findOne(this.userId).username,
+      username: Meteor.users.findOne(this.userId).username,
     });
   },
   'courses.edit'(courseId, name, category, subCategory, subject, price,

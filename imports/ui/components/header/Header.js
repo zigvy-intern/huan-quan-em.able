@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Accounts from '/imports/ui/components/accounts/Accounts'
 
 export default class Header extends Component {
 
@@ -7,9 +8,11 @@ export default class Header extends Component {
     super(props);
     // this.changeOnClick = this.changeOnClick.bind(this);
     this.state = {
-      whiteNavChildFlag: false,
-      searchFlag: false,
+      flag: false,
     };
+    this.changeOnClick = this.changeOnClick.bind(this);
+    this.changeDropDownOnClick = this.changeDropDownOnClick.bind(this);
+    this.changeOnSearchClick = this.changeOnSearchClick.bind(this);
   }
 
   changeOnClick(childPosition) {
@@ -33,7 +36,6 @@ export default class Header extends Component {
         whiteNavChildFlag: false,
       });
     }
-
   }
 
   changeOnSearchClick() {
@@ -62,12 +64,8 @@ export default class Header extends Component {
             </div>
             <div className="child">
               <p>
-<<<<<<< Updated upstream
-                <span>Howdy</span> Terry Richardson <span className="icon-arrow-down"></span>
-=======
                 <span>Howdy </span>
                 <Accounts />
->>>>>>> Stashed changes
               </p>
             </div>
           </div>
@@ -124,7 +122,7 @@ export default class Header extends Component {
                   <Link className="white-top-nav" to='/courses-list'>
                     <p>
                       My Courses
-                   </p>
+                  </p>
                   </Link>
                 </div>
                 <div onClick={() => this.changeOnClick("2")} className="child">
@@ -175,6 +173,7 @@ export default class Header extends Component {
           </div>
         </div>
       </div>
+
     )
   }
 }

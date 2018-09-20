@@ -27,7 +27,12 @@ class Popup extends Component {
     }
 
     displayMessage() {
-        return "You just launched a new course: " + this.props.courseName + ", status: " + this.props.status;
+        if (this.props.option == 'create') {
+            return "You just launched a new course: " + this.props.courseName + ", status: " + this.props.status;
+        }
+        if (this.props.option == 'update') {
+            return "You just edit course: " + this.props.courseName + ", status: " + this.props.status;
+        }
     }
 
     render() {
