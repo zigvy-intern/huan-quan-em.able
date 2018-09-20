@@ -10,6 +10,9 @@ export default class Header extends Component {
     this.state = {
       flag: false,
     };
+    this.changeOnClick = this.changeOnClick.bind(this);
+    this.changeDropDownOnClick = this.changeDropDownOnClick.bind(this);
+    this.changeOnSearchClick = this.changeOnSearchClick.bind(this);
   }
 
   changeOnClick(childPosition) {
@@ -19,21 +22,34 @@ export default class Header extends Component {
         document.getElementById("nav-" + i).style.borderBottom = "1.5px solid transparent";
       }
     }
-  }
+}
 
   changeDropDownOnClick() {
-    if (this.state.flag == false) {
+    if (this.state.whiteNavChildFlag == false) {
       document.getElementById("drop-down-list").style.display = "flex";
       this.setState({
-        flag: true,
+        whiteNavChildFlag: true,
       });
     } else {
       document.getElementById("drop-down-list").style.display = "none";
       this.setState({
-        flag: false,
+        whiteNavChildFlag: false,
       });
     }
+  }
 
+  changeOnSearchClick() {
+    if (this.state.searchFlag == false) {
+      document.getElementById("search-bar").style.display = "block";
+      this.setState({
+        searchFlag: true,
+      })
+    } else {
+      document.getElementById("search-bar").style.display = "none";
+      this.setState({
+        searchFlag: false,
+      })
+    }
   }
 
   render() {
@@ -112,7 +128,7 @@ export default class Header extends Component {
                 <div onClick={() => this.changeOnClick("2")} className="child">
                   <p>
                     My Bookings
-              </p>
+                  </p>
                 </div>
                 <div onClick={() => this.changeOnClick("3")} className="child">
                   <Link className="white-top-nav" to='/courses-card'>
@@ -124,27 +140,32 @@ export default class Header extends Component {
                 <div onClick={() => this.changeOnClick("4")} className="child">
                   <p>
                     How It Works
-              </p>
+                  </p>
                 </div>
                 <div onClick={() => this.changeOnClick("5")} className="child">
                   <p>
                     All Courses
-              </p>
+                  </p>
                 </div>
                 <div onClick={() => this.changeOnClick("6")} className="child">
                   <p>
                     Blog
-              </p>
+                  </p>
                 </div>
                 <div onClick={() => this.changeOnClick("7")} className="child">
                   <p>
                     Course Leads
-              </p>
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="child">
-              <span className="icon-search"></span>
+            <div id="search-toggle" className="child">
+              <span onClick={() => this.changeOnSearchClick()} className="icon-search"></span>
+              <div id="search-bar" className="slide-animation">
+                <form id="searchForm" method="get">
+                  <input type="search" id="searchField" placeholder="Course name..." autoComplete="off" />
+                </form>
+              </div>
             </div>
             <div className="child">
               <span className="icon-noti"></span>

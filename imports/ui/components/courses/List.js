@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 export default class List extends Component {
   deleteCourse() {
@@ -9,11 +10,12 @@ export default class List extends Component {
 
   render() {
     const { course } = this.props;
+    const time = moment(course.createdAt).fromNow();
 
     return (
       <div className="course">
         <div className="child">
-          
+          <img className="course-pic" src={course.img} alt={course.name} />
         </div>
         <div className="child course-des">
           <div>
@@ -42,13 +44,13 @@ export default class List extends Component {
                 {course.username}
               </div>
               <div className="creator-date">
-                2 weeks ago
-                </div>
+                {time}
+              </div>
             </div>
           </div>
         </div>
         <div className="child status">
-          <p className={`status-wrapper ${course.status}`}>
+          <p className={`status-wrapper draft ${course.status}`}>
             {course.status}
           </p>
         </div>

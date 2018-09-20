@@ -6,7 +6,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Media } from '/imports/api/media';
 import Header from '/imports/ui/components/header/Header';
 import Map from './Map';
-import { Requirement, Image } from './Creating';
+import { Image } from './Media'
+import { Requirement } from './Requirement';
 
 class Editing extends Component {
   constructor(props) {

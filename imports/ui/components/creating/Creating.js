@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import axios from 'axios';
 
 import { Media } from '/imports/api/media';
 import Header from '/imports/ui/components/header/Header';
 import Map from './Map';
+import { Image } from './Media';
+import { Requirement } from './Requirement';
 
 let temporaryStatus = '';
 
@@ -30,6 +31,8 @@ class Creating extends Component {
     this.createDraftCourse = this.createDraftCourse.bind(this);
     this.addRequirement = this.addRequirement.bind(this);
     this.renderRequirement = this.renderRequirement.bind(this);
+    this.onChangeClose = this.onChangeClose.bind(this);
+    this.onChangeModalPicture = this.onChangeModalPicture.bind(this);
   }
 
   uploadMedia() {
@@ -46,8 +49,17 @@ class Creating extends Component {
 
   renderMedia() {
     return this.props.media.map((media) => (
-      <Image key={media._id} media={media} />
+      <Image key={media._id} media={media} retrieveSource={this.onChangeModalPicture} />
     ));
+  }
+
+  onChangeModalPicture(primitiveImgId) {
+    document.getElementById("modal-img-review").style.display = "block";
+    document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
+  }
+
+  onChangeClose() {
+    document.getElementById("modal-img-review").style.display = "none";
   }
 
   addRequirement() {
@@ -291,69 +303,18 @@ class Creating extends Component {
             >
               Save as draft
             </button>
-          </div>
+          </div>          
+        </div>
+        <div id="modal-img-review" className="modal">
+          <span onClick={() => this.onChangeClose()} className="close">&times;</span>
+          <img className="modal-content" id="img-modal" />
         </div>
       </div>
     )
   }
 }
 
-export class Requirement extends Component {
-  render() {
-    return (
-      <div className="requi-wrapper flex-row align">
-        <div className="info light">{this.props.index}:</div>
-        <div className="detail">
-          <input
-            className="detail"
-            type="text"
-            placeholder={`Requirement ${this.props.index}`}
-          />
-        </div>
-      </div>
-    )
-  }
-}
 
-export class Image extends Component {
-  constructor(props) {
-    super(props);
-    this.setCover = this.setCover.bind(this);
-    this.deleteMedia = this.deleteMedia.bind(this);
-  }
-
-  setCover() {
-    Meteor.call('media.setCover', this.props.media._id);
-  }
-
-  deleteMedia() {
-    Meteor.call('media.remove', this.props.media._id, this.props.media.owner);
-  }
-
-  render() {
-    const { media } = this.props;
-    if (media.cover) {
-      return (
-        <div className="img-wrapper flex-column" id="img-cover">
-          <img className="cover-img" src={media.img} alt="cover" />
-          <button>
-            <span className="icon-delete delete-btn" />
-          </button>
-          <div className="img-action">Cover</div>
-        </div>
-      )
-    }
-    return (
-      <div className="img-wrapper flex-column">
-        <img className="cover-img" src={media.img} alt="cover" />
-        <button onClick={this.deleteMedia}>
-          <span className="icon-delete delete-btn" />
-        </button>
-        <button onClick={this.setCover}><div className="img-action">Set as Cover</div></button>
-      </div>
-    )
-  }
-}
 
 export default withTracker(() => {
   Meteor.subscribe('media');

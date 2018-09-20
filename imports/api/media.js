@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import { MongoClient } from 'mongodb';
 
 export const Media = new Mongo.Collection('media');
 

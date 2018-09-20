@@ -84,7 +84,9 @@ const Search = compose(
             />
           </StandaloneSearchBox>        
         </div>				
-        <button><img className="send-btn" src="/icons/send.svg" alt="send" /></button>
+        <button>	
+          <span className="icon-send send-btn"></span>	
+        </button>
       </div>      
       <div>
         <GoogleMap
@@ -105,7 +107,7 @@ const enhance = _.identity;
 
 const ReactGoogleMaps = () => {
   return (
-    <div>       
+    <div>
       <Search key="search" />
     </div>
   )

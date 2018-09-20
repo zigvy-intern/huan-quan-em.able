@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 export default class Card extends Component {
   deleteCourse() {
@@ -9,6 +10,7 @@ export default class Card extends Component {
 
   render() {
     const { course } = this.props;
+    const time = moment(course.createdAt).fromNow();
 
     return (
       <div className="child">
@@ -24,7 +26,7 @@ export default class Card extends Component {
               </div>
               <div className="child"></div>
               <div onClick={this.deleteCourse.bind(this)} className="child">
-                <span className="icon-delete-gray">X</span>
+                <span className="icon-delete"></span>
               </div>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default class Card extends Component {
                   {course.username}
                 </div>
                 <div className="creator-date">
-                  2 weeks ago
+                  {time}
                 </div>
               </div>
             </div>
