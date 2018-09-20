@@ -6,33 +6,83 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Media } from '/imports/api/media';
 import Header from '/imports/ui/components/header/Header';
 import Map from './Map';
-import { Image } from './Media';
+import { Image } from './Media'
 import { Requirement } from './Requirement';
 
-let temporaryStatus = '';
-
-class Creating extends Component {
+class Editing extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: null,
+      course: null,
+      courseId: null
+    }   
+    this.renderEditing = this.renderEditing.bind(this); 
+  }
+
+  componentDidMount() {
+    const courseId = this.props.match.params.id;
+    this.setState({
+      courseId: courseId
+    })
+    
+    Meteor.call('courses.get', courseId, (error, course) => {
+      const result = {
+        course, error: null,
+      }
+      if (error) {
+        result.error = error;
+      } else {
+        result.course = course
+      }
+      this.setState({
+        ...result
+      });         
+    });
+  }
+
+  renderEditing() {
+    const { courseId, course, error } = this.state;
+
+    return course ? 
+      <RenderEditing 
+        key={course._id} course={course}
+        courseId={courseId}
+        media={this.props.media}
+        username={this.props.username}         
+      /> 
+      : null
+  }
+
+  render() {
+    return <div>{this.renderEditing()}</div>
+  }
+}
+
+let temporaryStatus = '';
+
+class RenderEditing extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: this.props.course.name,
+      price: this.props.course.price,
+      desc: this.props.course.desc,
       img: '',
       category: '',
       subCategory: '',
       subject: '',
       level: '',
       size: '',
-      status: '',
       index: 0
     }
     this.uploadMedia = this.uploadMedia.bind(this);
     this.renderMedia = this.renderMedia.bind(this);
-    this.createCourse = this.createCourse.bind(this)
-    this.createLiveCourse = this.createLiveCourse.bind(this);
-    this.createDraftCourse = this.createDraftCourse.bind(this);
+    this.editLiveCourse = this.editLiveCourse.bind(this);
+    this.editDraftCourse = this.editDraftCourse.bind(this);
+    this.editCourse = this.editCourse.bind(this);
     this.addRequirement = this.addRequirement.bind(this);
     this.renderRequirement = this.renderRequirement.bind(this);
-    this.onChangeClose = this.onChangeClose.bind(this);
-    this.onChangeModalPicture = this.onChangeModalPicture.bind(this);
   }
 
   uploadMedia() {
@@ -49,17 +99,8 @@ class Creating extends Component {
 
   renderMedia() {
     return this.props.media.map((media) => (
-      <Image key={media._id} media={media} retrieveSource={this.onChangeModalPicture} />
+      <Image key={media._id} media={media} />
     ));
-  }
-
-  onChangeModalPicture(primitiveImgId) {
-    document.getElementById("modal-img-review").style.display = "block";
-    document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
-  }
-
-  onChangeClose() {
-    document.getElementById("modal-img-review").style.display = "none";
   }
 
   addRequirement() {
@@ -76,32 +117,40 @@ class Creating extends Component {
     return <div>{requirements}</div>
   }
 
-  createLiveCourse() {
+  editLiveCourse() {
     temporaryStatus = 'live';
-    return this.createCourse();
+
+    return this.editCourse();
   }
 
-  createDraftCourse() {
+  editDraftCourse() {
     temporaryStatus = 'draft';
-    return this.createCourse();
+
+    return this.editCourse();
   }
 
-  createCourse() {
-    const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
-    const price = ReactDOM.findDOMNode(this.refs.priceInput).value.trim();
-    const desc = ReactDOM.findDOMNode(this.refs.descInput).value.trim();
+  editCourse() {
+    let name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
+    let price = ReactDOM.findDOMNode(this.refs.priceInput).value.trim();
+    let desc = ReactDOM.findDOMNode(this.refs.descInput).value.trim();
+   
+    if (name === '') {
+      name = this.state.name
+    }    
+    if (price === '') {
+      price = this.state.price
+    }    
+    if (desc === '') {
+      desc = this.state.desc
+    }
+      
+    const { courseId } = this.props;
     const status = temporaryStatus;
     const { category, subCategory, subject, level, size } = this.state;
     const img = this.props.media[0].img;
 
-    let code = "";
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < 10; i++) {
-      code += possible.charAt(Math.floor(Math.random() * possible.length))
-    };
-
-    Meteor.call('courses.insert', name, category, subCategory, subject,
-      price, level, size, desc, status, code, img)
+    Meteor.call('courses.edit', courseId, name, category, subCategory, subject,
+      price, level, size, desc, status, img)
 
     ReactDOM.findDOMNode(this.refs.nameInput).value = '';
     ReactDOM.findDOMNode(this.refs.priceInput).value = '';
@@ -109,6 +158,8 @@ class Creating extends Component {
   }
 
   render() {
+    const { course } = this.props;
+
     return (
       <div>
         <Header />
@@ -125,7 +176,7 @@ class Creating extends Component {
                   className="detail bold"
                   type="text"
                   ref="nameInput"
-                  placeholder="Add course's name"
+                  placeholder={course.name}
                   required
                 />
               </div>
@@ -137,9 +188,11 @@ class Creating extends Component {
                   <select
                     className="flex-row space-between detail bold"
                     value={this.state.category}
+                    placeholder={course.category}
                     onChange={(e) => this.setState({ category: e.target.value })}
                     required
                   >
+                    <option>{course.category}</option>
                     <option>Music</option>
                     <option>Art</option>
                     <option>Coding</option>
@@ -152,9 +205,11 @@ class Creating extends Component {
                   <select
                     className="flex-row space-between detail bold"
                     value={this.state.subCategory}
+                    placeholder={course.subCategory}
                     onChange={(e) => this.setState({ subCategory: e.target.value })}
                     required
                   >
+                    <option>{course.subCategory}</option>
                     <option>Junior College</option>
                     <option>Public College</option>
                     <option>Private College</option>
@@ -167,9 +222,11 @@ class Creating extends Component {
                   <select
                     className="flex-row space-between detail bold"
                     value={this.state.subject}
+                    placeholder={course.subject}
                     onChange={(e) => this.setState({ subject: e.target.value })}
                     required
                   >
+                    <option>{course.subject}</option>
                     <option>English</option>
                     <option>History</option>
                     <option>Civic Education</option>
@@ -187,7 +244,7 @@ class Creating extends Component {
                       type="text"
                       ref="priceInput"
                       pattern="[0-9.]{0,}"
-                      placeholder="145.00"
+                      placeholder={course.price}
                       required
                     />
                   </div>
@@ -200,9 +257,11 @@ class Creating extends Component {
                   <select
                     className="flex-row space-between detail bold"
                     value={this.state.level}
+                    placeholder={course.level}
                     onChange={(e) => this.setState({ level: e.target.value })}
                     required
                   >
+                    <option>{course.level}</option>
                     <option>Beginner</option>
                     <option>Intermediate</option>
                     <option>Advanced</option>
@@ -215,9 +274,11 @@ class Creating extends Component {
                   <select
                     className="flex-row space-between detail bold"
                     value={this.state.size}
+                    placeholder={course.size}
                     onChange={(e) => this.setState({ size: e.target.value })}
                     required
                   >
+                    <option>{course.size}</option>
                     <option>10 People +</option>
                     <option>20 People +</option>
                     <option>30 People +</option>
@@ -232,7 +293,7 @@ class Creating extends Component {
                   className="desc"
                   type="text"
                   ref="descInput"
-                  placeholder="Add course's description"
+                  placeholder={course.desc}
                   required
                 />
               </div>
@@ -290,31 +351,25 @@ class Creating extends Component {
 
           <div className="bottom flex-row center">
             <button
-              onClick={this.createLiveCourse}
+              onClick={this.editLiveCourse}
               className="bottom-btn bold"
               id="bottom-btn1"
             >
-              Create
+              Edit
             </button>
             <button
-              onClick={this.createDraftCourse}
+              onClick={this.editDraftCourse}
               className="bottom-btn bold"
               id="bottom-btn2"
             >
               Save as draft
             </button>
-          </div>          
-        </div>
-        <div id="modal-img-review" className="modal">
-          <span onClick={() => this.onChangeClose()} className="close">&times;</span>
-          <img className="modal-content" id="img-modal" />
+          </div>
         </div>
       </div>
     )
   }
 }
-
-
 
 export default withTracker(() => {
   Meteor.subscribe('media');
@@ -323,4 +378,4 @@ export default withTracker(() => {
     media: Media.find({}, { sort: { cover: -1, createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(),
   };
-})(Creating);
+})(Editing);

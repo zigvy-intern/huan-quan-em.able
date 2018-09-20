@@ -66,41 +66,41 @@ const Search = compose(
   withScriptjs,
   withGoogleMap
 )(props =>
-  <div className="flex-column">
-    <div className="info-wrapper flex-row align space-between">
-      <div className="flex-row align">
-        <div className="info light">Address:</div>
-        <StandaloneSearchBox
-          ref={props.onSearchBoxMounted}
-          bounds={props.bounds}
-          controlPosition={google.maps.ControlPosition.TOP}
-          onPlacesChanged={props.onPlacesChanged}
-        >
-          <input
-            type="text"
-            placeholder="Search places"
-            className="detail bold"
-            style={{ width: `100%` }}
-          />
-        </StandaloneSearchBox>
+    <div className="flex-column">
+      <div className="info-wrapper flex-row align space-between">
+        <div className="flex-row align">
+          <div className="info light">Address:</div>
+          <StandaloneSearchBox
+            ref={props.onSearchBoxMounted}
+            bounds={props.bounds}
+            controlPosition={google.maps.ControlPosition.TOP}
+            onPlacesChanged={props.onPlacesChanged}
+          >
+            <input 
+              type="text"
+              placeholder="Search places"
+              className="detail bold"
+              style={{ width: `100%` }}
+            />
+          </StandaloneSearchBox>        
+        </div>				
+        <button>	
+          <span className="icon-send send-btn"></span>	
+        </button>
+      </div>      
+      <div>
+        <GoogleMap
+          ref={props.onMapMounted}
+          defaultZoom={16} 
+          center={props.center}
+          onBoundsChanged={props.onBoundsChanged}
+        >      
+          {props.markers.map((marker, index) =>
+            <Marker key={index} position={marker.position} />
+          )}
+        </GoogleMap>
       </div>
-      <button>
-        <span className="icon-send send-btn"></span>
-      </button>
     </div>
-    <div>
-      <GoogleMap
-        ref={props.onMapMounted}
-        defaultZoom={16}
-        center={props.center}
-        onBoundsChanged={props.onBoundsChanged}
-      >
-        {props.markers.map((marker, index) =>
-          <Marker key={index} position={marker.position} />
-        )}
-      </GoogleMap>
-    </div>
-  </div>
 );
 
 const enhance = _.identity;

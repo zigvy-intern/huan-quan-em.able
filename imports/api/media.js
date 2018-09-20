@@ -11,29 +11,37 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'media.insert' (img) {
-    console.log(img)
+  'media.insert' (img, cover) {
     Media.insert({
       img,
+      cover,
       createdAt: new Date(),      
-      //owner: this.userId,
-      //username: Meteor.users.findOne(this.userId).username,
+      owner: this.userId,
+      username: Meteor.users.findOne(this.userId).username,
     });
   },
-  'media.remove'(mediaId) {
+  'media.setCover' (coverId) {
+    Media.update(
+      { cover: true },
+      { $set: { cover: false } }
+    );
+    Media.update(
+      { _id: coverId },
+      { $set: { cover: true } }
+    )
+  },
+  'media.remove'(mediaId, owner) {
     check(mediaId, String);
+    check(owner, String);
 
-    Media.remove(mediaId)
-    //check(owner, String);
-
-    {/*if (Roles.userIsInRole(this.userId, ['admin'])) {      
-      Comments.remove(matchId);
+    if (Roles.userIsInRole(this.userId, ['admin'])) {      
+      Media.remove(mediaId);
     }
 
     if (owner == this.userId) {      
-      Comments.remove(matchId);      
+      Media.remove(mediaId);      
     }
     
-    throw new Meteor.Error(403, "Not authorized");*/}
+    throw new Meteor.Error(403, "Not authorized");
   },
 });

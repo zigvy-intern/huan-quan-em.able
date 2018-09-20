@@ -113,11 +113,11 @@
 .course > div{
   margin-top: 16px;
 }
-.course-pic > div{
-  background-image: url('../img/avatar.jpg');
-  background-size: 90px 65px;
-  height: 52.5px;
-  width: 52.5px;
+.course-pic {
+ max-width: 52.5px;
+ max-height: 52.5px;
+ height: 100%;
+ width: 100%;
   border-radius: 10px;
 }
 
@@ -146,7 +146,6 @@
 .course-cate-card{
   margin-top: 14px;
 }
-
 .creator > div{
   cursor: pointer;
   display: grid;
@@ -184,6 +183,7 @@
 }
 
 .draft{
+  padding: 6.5px 7.5px;
   margin-top: 16px;
   text-transform: uppercase;
   background-color: #d6e0ed;
@@ -191,10 +191,6 @@
   width: fit-content;
   height: fit-content;
   border-radius: 5px;
-}
-
-.draft > p{
-  padding: 6.5px 7.5px;
 }
 
 .slot-number{
@@ -273,6 +269,21 @@
   .description{
     max-width: 600px;
   }
+  .title-list{
+    max-width: 600px;
+  }
+  .course-list > .course{
+    max-width: 600px;
+  }
+  .creator{
+    margin-left: 10px;
+  }
+  .status{
+    margin-left: 10px;
+  }
+  .slot{
+    margin-left: 10px;
+  }
 }
 
 @media (max-width:640px){
@@ -287,6 +298,16 @@
   .description > .des-button{
     justify-self: center;
     margin-top: 20px;
+  }
+  .title-list{
+    display: none;
+  }
+  
+}
+
+@media (max-width:480px){
+  .course-list > .course{
+    grid-template-columns: 15% 31% 3.5% 20.1% 9.8% 10.5% auto;
   }
 }
 

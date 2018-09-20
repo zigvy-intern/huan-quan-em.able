@@ -2,7 +2,6 @@ body, html, p, span{
   padding: 0;
   margin: 0;
 }
-
 .blue-top-wrapper{
   background-color: #4a90e2;
   width: 100%;
@@ -10,7 +9,6 @@ body, html, p, span{
   display: grid;
   justify-items: center;
 }
-
 .blue-top{
   display: grid;
   grid-template-columns: repeat(2,auto);
@@ -19,32 +17,25 @@ body, html, p, span{
   width: 100%;
   color: white;
 }
-
 .blue-top > .child{
   font-size: 9px;
   font-weight: 500;
 }
-
 .blue-top > .child > p{
 padding-top: 11%;
 }
-
 .blue-top > .child:nth-child(1) > p{
   padding-top: 13.25%;
 }
-
 .blue-top > .child:nth-child(1){
   justify-self: left;
 }
-
 .blue-top > .child:nth-child(2){
   justify-self: right;
 }
-
 .blue-top > .child:nth-child(2) > p > span:nth-child(1){
   color:#d9e7f8;
 }
-
 .banner{
   display: grid;
   background-image: url('../img/banner.jpg');
@@ -54,34 +45,30 @@ padding-top: 11%;
   width: 100%;
   justify-items: center;
 }
-
 .my-courses{
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
   letter-spacing: .5px;
-  width: 51.7%;
+  max-width: 745px;
+  width: 100%;
 }
-
 .my-courses > div:nth-child(1){
   font-size: 30px;
   font-weight: 300;
 }
-
 .my-courses > div:nth-child(2){
   margin-top: 11px;
   font-size: 12px;
   font-weight: 300;
   color: #ffffffd1;
 }
-
 .my-courses > div:nth-child(3){
   margin-top: 23px;
   border: 1px solid white;
   width: 22px;
 }
-
 .white-top-wrapper{
   height: 55px;
   background-color: white;
@@ -89,7 +76,6 @@ padding-top: 11%;
   display: grid;
   justify-items: center;
 }
-
 .white-top{
   height: 100%;
   font-size: 10px;
@@ -99,21 +85,18 @@ padding-top: 11%;
   max-width: 745px;
   width: 100%;
 }
-
 .white-top > .child{
   width: fit-content;
   height: 100%;
   cursor: pointer;
 }
-
 .white-top > .child:nth-child(2){
   border-bottom: 1.5px solid #4a90e2;
 }
-
 .white-top > .child  p{
+  color: black;
   margin-top: 20px;
 }
-
 .white-top > .child:nth-child(1)  img{
   height: 17px;
   width:76.5px;
@@ -127,7 +110,6 @@ padding-top: 11%;
   margin-top: 20px;
   display: none;
 }
-
 .white-top > .child:nth-child(10){
   justify-self: right;
   height: 15px;
@@ -136,7 +118,6 @@ padding-top: 11%;
   margin-top: 20px;
   padding-left: 10px;
 }
-
 .white-top > .child:nth-child(11){
   justify-self: right;
   margin-top: 20px;
@@ -144,7 +125,6 @@ padding-top: 11%;
   width:15px;
   border: transparent;
 }
-
 .white-top > .child:nth-child(11):after{
   content: '12';
   position: relative;
@@ -160,28 +140,80 @@ padding-top: 11%;
   bottom: 7.5px;
   right: 5px;
 }
-
-
+#search-bar{
+  box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+  display: none;
+  position: relative;
+  top: 24px;
+  background-color: white;
+  width: 170px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 10px;
+}
+#search-bar input{
+  color: #676767;
+  padding: 5px 0px 7px 10px;
+  width: 100%;
+  outline: none;
+}
+#search-bar input::placeholder{
+  font-size: 10px;
+  color: #676767;
+  font-weight: 600;
+}
+#search-bar input::-webkit-search-decoration,
+::-webkit-search-cancel-button,
+::-webkit-search-results-button,
+::-webkit-search-results-decoration {
+   display: none; 
+  }
+/* .search-transform{
+  top: 14px;
+  transition: all 5s ease;
+} */
+@keyframes slide {
+  from{
+    transform: translate(0px, -10px);
+  }
+  to{
+    transform: translate(0px, 0px);
+  }
+}
+.slide-animation {
+  animation-name: slide;
+  animation-timing-function: ease-in-out;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
 #drop-down-list{
   position: relative;
-  width: 280px;
+  width: 200px;
   display: none;
   flex-direction: column;
-  top: 10px;
+  top: 24px;
   left: -20px;
-  background-color: white;
-  padding-bottom: 20px;
+  background-color: rgba(255,255,255,0.95);
+  padding-bottom: 10px;
 }
-
-#drop-down-list > .child{
-  margin-left: 20px;
-  margin-top: 20px;
+#drop-down-list > .child {
+  transition: all .2s ease;
+  width: 100%;
 }
-
+#drop-down-list > .child p{
+  margin-top: 0px;
+  padding: 10px 0px 10px 20px; 
+  transition: none;
+}
+#drop-down-list > .child:hover {
+  background-color: #4a90e2;
+}
+#drop-down-list > .child:hover p{
+  color: white;
+}
 .white-top-nav{
   color: black;
 }
-
 /* @media (max-width: 843px){
   .blue-top-wrapper{
     height: 45px;
@@ -193,21 +225,16 @@ padding-top: 11%;
     .blue-top > .child:nth-child(1) > p{
       padding-top: 9.25%;
   }
-
 } */
-
 /* @media (max-width: 568px){
-
   .blue-top{
     width: 90%;
     margin-left: 5%;
     color: white;
   }
-
   .blue-top > .child{
     font-size: 13px;
   }
-
   .blue-top > .child > p{
     padding-top: 10%;
   }
@@ -215,14 +242,11 @@ padding-top: 11%;
     .blue-top > .child:nth-child(1) > p{
       padding-top: 12%;
   }
-
 } */
-
 /* @media (max-width: 568px){
   .blue-top > .child{
     font-size: 12px;
   }
-
   .blue-top > .child > p{
     padding-top: 11%;
   }
@@ -231,61 +255,60 @@ padding-top: 11%;
     padding-top: 13%;
   }
 } */
-
 @media (max-width:1366px){
   .banner{
     background-size: 1366px 400px;
   }
 }
-
-
+@media (max-width:1015px){
+  #search-bar{
+    right: 160px;
+  }
+}
 @media (max-width:785px){
   .blue-top{
     max-width: 600px;
   }
-
   .white-top{
     max-width: 600px;
   }
-
   .banner{
     background-size: 1000px 310px;
     height: 260px;
   }
+  .my-courses{
+    max-width: 600px;
+  }
 }
-
 @media (max-width:640px){
-
   .white-top{
     max-width: 400px;
   }
-
   #nav-1, #nav-2, #nav-3, #nav-3, #nav-4, #nav-5, #nav-6, #nav-7{
     display: none;
   }
-
   #icon-more{
     display: block;
     margin-left: 20px;
   }
-
   .white-top > .child:nth-child(10){
     padding-left: 230px;
   }
-
   .white-top > .child:nth-child(11){
     padding-left: 30px;
   }
   .blue-top{
     max-width: 400px;
   }
-
   .banner{
     height: 180px;
     background-size: 715px 220px;
   }
+  .my-courses{
+    max-width: 400px;
+  }
+  
 }
-
 @media (max-width:440px){
   .blue-top{
     max-width: 280px;
@@ -293,11 +316,9 @@ padding-top: 11%;
   .white-top{
     max-width: 280px;
   }
-
   .white-top > .child:nth-child(10){
     padding-left: 100px;
   }
-
   #drop-down-list{
     width: 150px;
     color: black;
@@ -306,12 +327,10 @@ padding-top: 11%;
     background-size: 460px 145px;
     height: 145px;
   }
-
-
+  .my-courses{max-width: 280px;}
   .my-courses > div:nth-child(2){
     margin-top: 7px;
   }
-
   .my-courses > div:nth-child(3){
     margin-top: 15px;
   }

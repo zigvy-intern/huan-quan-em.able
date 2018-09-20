@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 import './courses';
 import './media';
 
-const uri = "mongodb+srv://emable1:DFJk78MEUlnsBrVl@em-able-utlze.mongodb.net/test?retryWrites=true";
+{/*const uri = "mongodb+srv://emable1:DFJk78MEUlnsBrVl@em-able-utlze.mongodb.net/test?retryWrites=true";
 
 MongoClient.connect(uri, { useNewUrlParser: true }, async function (err, client) {
   if (err) {
@@ -18,7 +18,7 @@ MongoClient.connect(uri, { useNewUrlParser: true }, async function (err, client)
   console.log('mediaTbl', mediaTbl);
   client.close();
 }
-);
+);*/}
 
 // if (Meteor.isServer) {
 //   Meteor.startup(() => {
