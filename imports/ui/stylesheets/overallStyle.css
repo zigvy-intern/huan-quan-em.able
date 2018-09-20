@@ -219,18 +219,32 @@ padding-top: 11%;
 
 #drop-down-list{
   position: relative;
-  width: 280px;
+  width: 200px;
   display: none;
   flex-direction: column;
-  top: 10px;
+  top: 24px;
   left: -20px;
-  background-color: white;
-  padding-bottom: 20px;
+  background-color: rgba(255,255,255,0.95);
+  padding-bottom: 10px;
 }
 
-#drop-down-list > .child{
-  margin-left: 20px;
-  margin-top: 20px;
+#drop-down-list > .child {
+  transition: all .2s ease;
+  width: 100%;
+}
+
+#drop-down-list > .child p{
+  margin-top: 0px;
+  padding: 10px 0px 10px 20px; 
+  transition: none;
+}
+
+#drop-down-list > .child:hover {
+  background-color: #4a90e2;
+}
+
+#drop-down-list > .child:hover p{
+  color: white;
 }
 
 .white-top-nav{

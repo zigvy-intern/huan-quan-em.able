@@ -131,7 +131,7 @@ class Creating extends Component {
         <Header />
         <div className="main">
           <div className="title light">Create new Course</div>
-          <div className="flex-column component-wrapper">
+          <div className="flex-column component-wrapper compulsory-info">
             <div className="component flex-row align">
               <div className="blue-line"></div><div className="component-title gray8c flex-row">General Information</div>
             </div>
