@@ -18,14 +18,11 @@ body, html, p, span{
   color: white;
 }
 .blue-top > .child{
+  display: flex;
+  justify-content: center;
+  align-self: center;
   font-size: 9px;
   font-weight: 500;
-}
-.blue-top > .child > p{
-padding-top: 11%;
-}
-.blue-top > .child:nth-child(1) > p{
-  padding-top: 13.25%;
 }
 .blue-top > .child:nth-child(1){
   justify-self: left;
@@ -214,6 +211,11 @@ padding-top: 11%;
 .white-top-nav{
   color: black;
 }
+
+.icon-list-with-bullets{
+  color: #4a90e2;
+}
+
 /* @media (max-width: 843px){
   .blue-top-wrapper{
     height: 45px;

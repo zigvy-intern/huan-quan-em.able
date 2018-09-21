@@ -22,11 +22,13 @@ export default class Card extends Component {
             </div>
             <div className="middle">
               <div className="child">
-                <Link className="icon-edit" to={`/courses-list/${course._id}`}></Link>
+                <Link to={`/courses-list/${course._id}`}>
+                  <span className="icon-edit on-hover-white"></span>
+                </Link>
               </div>
               <div className="child"></div>
               <div onClick={this.deleteCourse.bind(this)} className="child">
-                <span className="icon-delete"></span>
+                <span className="icon-delete on-hover-white"></span>
               </div>
             </div>
           </div>

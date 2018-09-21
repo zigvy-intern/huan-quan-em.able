@@ -122,7 +122,7 @@ export default withTracker(() => {
   Meteor.subscribe('courses');
 
   return {
-    courses: Courses.find({}).fetch(),
+    courses: Courses.find({}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(),
   };
 })(ListCourses);

@@ -27,7 +27,7 @@ class Header extends Component {
         document.getElementById("nav-" + i).style.borderBottom = "1.5px solid transparent";
       }
     }
-}
+  }
 
   changeDropDownOnClick() {
     if (this.state.whiteNavChildFlag == false) {
@@ -95,25 +95,21 @@ class Header extends Component {
             <div className="child">
               <img src="/img/logo.png" alt="" />
             </div>
-            <div onClick={() => this.changeOnClick("1")} id="nav-1" className="child">
-              <Link to='/courses-list'>
-                <p>
-                  My Courses
-                </p>
-              </Link>
-            </div>
+            <Link to='/courses-list' onClick={() => this.changeOnClick("1")} id="nav-1" className="child">
+              <p>
+                My Courses
+              </p>
+            </Link>
             <div onClick={() => this.changeOnClick("2")} id="nav-2" className="child">
               <p>
                 My Bookings
               </p>
             </div>
-            <div onClick={() => this.changeOnClick("3")} id="nav-3" className="child">
-              <Link to='/courses-card'>
-                <p>
-                  Dashboard
-                </p>
-              </Link>
-            </div>
+            <Link to='/courses-card' onClick={() => this.changeOnClick("3")} id="nav-3" className="child">
+              <p>
+                Dashboard
+              </p>
+            </Link>
             <div onClick={() => this.changeOnClick("4")} id="nav-4" className="child">
               <p>
                 How It Works
@@ -222,6 +218,6 @@ export default withTracker(() => {
 
   return {
     COURSE_COUNT: Courses.find({ _id: { $ne: true } }).count(),
-    CATE_COUNT: Courses.find({ category: { $ne: true} }).count(),
+    CATE_COUNT: Courses.find({ category: {unique : true, dropDups : true} }).count(),
   };
 })(Header);

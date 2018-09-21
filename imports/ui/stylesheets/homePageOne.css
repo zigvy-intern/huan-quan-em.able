@@ -36,14 +36,19 @@
   cursor: pointer;
 }
 
+.add-new-course{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: row;
+}
+
 .add-new-course > span:nth-child(1){
-  vertical-align: middle;
   font-size: 7px;
   color: white;
 }
 
 .add-new-course >  span:nth-child(2){
-  vertical-align: middle;
   font-weight: bold;
   font-size: 9px;
   padding-left: 5px;
@@ -263,6 +268,25 @@
 .icon-loading{
   color: #b4bcc3;
   font-size: 13px;
+}
+.icon-add{
+  color: white;
+}
+
+.icon-edit{
+  color: #d9d9d9;
+}
+
+.icon-delete{
+  color: #d9d9d9;
+}
+
+.on-hover-gray:hover{
+  color: #a6a6a6;
+}
+
+.on-hover-gray:hover{
+  color: #a6a6a6;
 }
 
 @media (max-width:785px){

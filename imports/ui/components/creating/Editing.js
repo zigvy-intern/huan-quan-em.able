@@ -8,6 +8,7 @@ import Header from '/imports/ui/components/header/Header';
 import Map from './Map';
 import { Image } from './Media'
 import { Requirement } from './Requirement';
+import Popup from '../popup/Popup.js';
 
 class Editing extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class RenderEditing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.course.name,
+        name: this.props.course.name,
       price: this.props.course.price,
       desc: this.props.course.desc,
       img: '',
@@ -74,7 +75,9 @@ class RenderEditing extends Component {
       subject: '',
       level: '',
       size: '',
-      index: 0
+      index: 0,
+      shouldShowPopup: false,
+      courseStatusTemp: '',
     }
     this.uploadMedia = this.uploadMedia.bind(this);
     this.renderMedia = this.renderMedia.bind(this);
@@ -83,6 +86,8 @@ class RenderEditing extends Component {
     this.editCourse = this.editCourse.bind(this);
     this.addRequirement = this.addRequirement.bind(this);
     this.renderRequirement = this.renderRequirement.bind(this);
+    this.onChangeClose = this.onChangeClose.bind(this);
+    this.onChangeModalPicture = this.onChangeModalPicture.bind(this);
   }
 
   uploadMedia() {
@@ -101,6 +106,35 @@ class RenderEditing extends Component {
     return this.props.media.map((media) => (
       <Image key={media._id} media={media} />
     ));
+  }
+
+  onChangeModalPicture(primitiveImgId) {
+    const modalBox = document.getElementById("modal-img-review");
+    modalBox.style.display = "flex";
+    if (primitiveImgId != 'video') {
+      if (document.getElementById('video-modal')) {
+        modalBox.removeChild(modalBox.lastElementChild);
+        const imgTag = document.createElement("img");
+        imgTag.classList.add("modal-content");
+        imgTag.src = document.getElementById(primitiveImgId).src;
+        imgTag.setAttribute('id', 'img-modal');
+        modalBox.appendChild(imgTag);
+      } else {
+        document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
+      }
+    } else {
+      modalBox.removeChild(modalBox.lastElementChild);
+      const videoTag = document.createElement("video");
+      videoTag.classList.add("modal-content");
+      videoTag.src = document.getElementById("video-play").src;
+      videoTag.setAttribute('controls', 'true');
+      videoTag.setAttribute('id', 'video-modal');
+      modalBox.appendChild(videoTag);
+    }
+  }
+
+  onChangeClose() {
+    document.getElementById("modal-img-review").style.display = "none";
   }
 
   addRequirement() {
@@ -144,17 +178,21 @@ class RenderEditing extends Component {
       desc = this.state.desc
     }
       
-    const { courseId, owner, username } = this.props;
+    const { courseId, owner } = this.props;
     const status = temporaryStatus;
     const { category, subCategory, subject, level, size } = this.state;
     const img = this.props.media[0].img;
 
     Meteor.call('courses.edit', courseId, name, category, subCategory, subject,
-      price, level, size, desc, status, img, owner, username)
+      price, level, size, desc, status, img, owner)
 
     ReactDOM.findDOMNode(this.refs.nameInput).value = '';
     ReactDOM.findDOMNode(this.refs.priceInput).value = '';
     ReactDOM.findDOMNode(this.refs.descInput).value = '';
+    this.setState({
+      shouldShowPopup: true,
+      courseStatusTemp: temporaryStatus,
+    })
   }
 
   render() {
@@ -308,10 +346,11 @@ class RenderEditing extends Component {
             <div className="media-component">
               {this.renderMedia()}
               <div className="img-wrapper flex-column">
+                <div className="video" />
                 <div className="flex-column center">
-                  <div className="video"></div>
-                  <img className="cover-img" src="/img/demo2.jpg" alt="cover" />
-                  <button className="play-btn-wrapper">
+                  <video id='video-play' src="/video/test.mp4" className="cover-img">
+                  </video>
+                  <button onClick={() => this.onChangeModalPicture("video")} className="play-btn-wrapper">
                     <img className="play-btn" src="/icons/play.svg" alt="play" />
                   </button>
                 </div>
@@ -321,7 +360,7 @@ class RenderEditing extends Component {
               </div>
               <div className="blank-img flex-column center">
                 <button className="add-btn-wrapper">
-                  <span onClick={this.uploadMedia} className="add-btn" className="icon-add-blue"></span>
+                  <span onClick={this.uploadMedia} className="icon-add add-btn"></span>
                 </button>
               </div>
             </div>
@@ -366,6 +405,7 @@ class RenderEditing extends Component {
             </button>
           </div>
         </div>
+        {this.state.shouldShowPopup && <Popup courseName={this.state.name} status={this.state.courseStatusTemp} option="update" />}
       </div>
     )
   }

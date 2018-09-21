@@ -25,11 +25,7 @@ Meteor.methods({
     check(code, String);
     check(img, String);
 
-    if (!this.userId) {
-      throw new Meteor.Error(403, "Not authorized");
-    }
-
-    Courses.insert({
+    const INSERT_COURSE = Courses.insert({
       name,
       category,
       subCategory,
@@ -45,37 +41,49 @@ Meteor.methods({
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
     });
+
+    if (owner == this.userId) {      
+      return INSERT_COURSE;
+    }
+    
+    throw new Meteor.Error(403, "Not authorized");    
   },
 
   'courses.edit' (courseId, name, category, subCategory, subject, price, 
-    level, size, desc, status, img, owner, username) {
+    level, size, desc, status, img, owner) {
 
     check(courseId, String)
     check(status, String);
     check(img, String);
 
-    if (!this.userId) {
-    throw new Meteor.Error(403, "Not authorized");
-    }
-
-    Courses.update(
+    const UPDATE_COURSE = Courses.update(
       { _id: courseId },
       { 
-        name: name,
-        category: category,
-        subCategory: subCategory,
-        subject: subject,
-        price: price,
-        level: level,
-        size: size,
-        desc: desc,
-        status: status,
-        img: img,
-        createdAt: new Date(),
-        owner: owner, 
-        username: username
+        $set: {
+          name: name,
+          category: category,
+          subCategory: subCategory,
+          subject: subject,
+          price: price,
+          level: level,
+          size: size,
+          desc: desc,
+          status: status,
+          img: img,
+          createdAt: new Date(),
+        }
       }
     );
+
+    if (Roles.userIsInRole(this.userId, ['admin'])) {      
+      return UPDATE_COURSE;
+    }
+
+    if (owner == this.userId) {      
+      return UPDATE_COURSE;
+    }
+    
+    throw new Meteor.Error(403, "Not authorized");    
   },
 
   'courses.load' (courseNum) {
