@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
-import Accounts from '/imports/ui/components/accounts/Accounts'
+import Accounts from '/imports/ui/components/accounts/Accounts';
 
-export default class Header extends Component {
+import { Courses } from '/imports/api/courses';
+
+class Header extends Component {
 
   constructor(props) {
     super(props);
-    // this.changeOnClick = this.changeOnClick.bind(this);
     this.state = {
       flag: false,
+      search: '',
     };
     this.changeOnClick = this.changeOnClick.bind(this);
     this.changeDropDownOnClick = this.changeDropDownOnClick.bind(this);
     this.changeOnSearchClick = this.changeOnSearchClick.bind(this);
+    this.handleSearchInfo = this.handleSearchInfo.bind(this);
   }
 
   changeOnClick(childPosition) {
     document.getElementById("nav-" + childPosition).style.borderBottom = "1.5px solid #4a90e2";
-    for (var i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 7; i++) {
       if (i != childPosition) {
         document.getElementById("nav-" + i).style.borderBottom = "1.5px solid transparent";
       }
@@ -52,7 +57,21 @@ export default class Header extends Component {
     }
   }
 
+  handleSearchInfo(e) {
+    const { handleSearch } = this.props;
+    const { search } = this.state;
+    this.setState({
+      search: e.target.value
+    })
+
+    handleSearch({
+      search: search
+    });
+  }
+
   render() {
+    const { CATE_COUNT, COURSE_COUNT } = this.props;
+
     return (
       <div className="all-use-top">
         <div className="blue-top-wrapper">
@@ -64,7 +83,7 @@ export default class Header extends Component {
             </div>
             <div className="child">
               <p>
-                <span>Howdy</span> 
+                <span>Howdy </span> 
                 <Accounts />
               </p>
             </div>
@@ -160,10 +179,18 @@ export default class Header extends Component {
               </div>
             </div>
             <div id="search-toggle" className="child">
-              <span onClick={() => this.changeOnSearchClick()} className="icon-search"></span>
+              <span 
+                onClick={() => this.changeOnSearchClick()}                 
+                className="icon-search">
+              </span>
               <div id="search-bar" className="slide-animation">
                 <form id="searchForm" method="get">
-                  <input type="search" id="searchField" placeholder="Course name..." autoComplete="off" />
+                  <input 
+                    type="search" 
+                    id="searchField" 
+                    placeholder="Course name..." 
+                    onChange={this.handleSearchInfo}
+                  />
                 </form>
               </div>
             </div>
@@ -179,7 +206,7 @@ export default class Header extends Component {
               My Courses
             </div>
             <div>
-              3 Categories &#8901; 6 Courses
+              {CATE_COUNT} Categories &#8901; {COURSE_COUNT} Courses
             </div>
             <div></div>
           </div>
@@ -189,3 +216,12 @@ export default class Header extends Component {
     )
   }
 }
+
+export default withTracker(() => {
+  Meteor.subscribe('courses');
+
+  return {
+    COURSE_COUNT: Courses.find({ _id: { $ne: true } }).count(),
+    CATE_COUNT: Courses.find({ category: { $ne: true} }).count(),
+  };
+})(Header);

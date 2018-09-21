@@ -144,13 +144,13 @@ class RenderEditing extends Component {
       desc = this.state.desc
     }
       
-    const { courseId } = this.props;
+    const { courseId, owner, username } = this.props;
     const status = temporaryStatus;
     const { category, subCategory, subject, level, size } = this.state;
     const img = this.props.media[0].img;
 
     Meteor.call('courses.edit', courseId, name, category, subCategory, subject,
-      price, level, size, desc, status, img)
+      price, level, size, desc, status, img, owner, username)
 
     ReactDOM.findDOMNode(this.refs.nameInput).value = '';
     ReactDOM.findDOMNode(this.refs.priceInput).value = '';
