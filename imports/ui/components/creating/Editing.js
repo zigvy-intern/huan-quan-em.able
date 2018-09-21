@@ -389,7 +389,8 @@ class RenderEditing extends Component {
           <span onClick={() => this.onChangeClose()} className="close">&times;</span>
           <img className="modal-content" id="img-modal" />
         </div>
-        {this.state.shouldShowPopup && <Popup courseName={this.state.name} status={this.state.courseStatusTemp} option="update" />}
+        {/* {this.state.shouldShowPopup && <Popup courseName={this.state.name} status={this.state.courseStatusTemp} option="update" />} */}
+        {this.state.shouldShowPopup && console.log("working")}
       </div>
     )
   }

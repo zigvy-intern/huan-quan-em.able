@@ -212,6 +212,10 @@ body, html, p, span{
   color: black;
 }
 
+.icon-list-with-bullets{
+  color: #4a90e2;
+}
+
 /* @media (max-width: 843px){
   .blue-top-wrapper{
     height: 45px;

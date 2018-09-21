@@ -147,7 +147,7 @@ class Creating extends Component {
                 />
               </div>
             </div>
-            <div className="flex-row space-between">
+            <div className="flex-row space-between responsive-field-column">
               <div className="info-wrapper-outside" id="category">
                 <div className="info-wrapper flex-row align space-between">
                   <div className="info light">Category:</div>
@@ -194,7 +194,7 @@ class Creating extends Component {
                 </div>
               </div>
             </div>
-            <div className="flex-row space-between">
+            <div className="flex-row space-between responsive-field-column">
               <div className="info-wrapper-outside" id="fee">
                 <div className="info-wrapper flex-row align space-between" >
                   <div className="flex-row align">
@@ -263,7 +263,7 @@ class Creating extends Component {
             </div>
             <div className="media-component">
               {this.renderMedia()}
-              <div className="img-wrapper flex-column">
+              {/* <div className="img-wrapper flex-column">
                 <div className="flex-column center">
                   <div className="video"></div>
                   <img className="cover-img" src="/img/demo2.jpg" alt="cover" />
@@ -274,7 +274,7 @@ class Creating extends Component {
                 <button>
                   <span className="icon-delete delete-btn"></span>
                 </button>
-              </div>
+              </div> */}
               <div className="blank-img flex-column center">
                 <button className="add-btn-wrapper">
                   <span onClick={this.uploadMedia} className="icon-add add-btn"></span>

@@ -202,8 +202,7 @@ input {
 /* Photo & Video */
 .media-component {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-	grid-auto-columns: 1fr;
+	grid-template-columns: repeat(auto-fit, minmax(150px,173px));
 	justify-items: center;
 	grid-gap: 17px;
 }
@@ -384,6 +383,13 @@ input {
 @media (max-width:640px){
 	.main{
 		max-width: 400px;
+	}
+	#category, #sub-category, #subject, #fee, #level, #size{
+		max-width: 100%;
+	}
+
+	.responsive-field-column{
+		flex-direction: column;
 	}
 }
 
