@@ -55,8 +55,28 @@ class Creating extends Component {
   }
 
   onChangeModalPicture(primitiveImgId) {
-    document.getElementById("modal-img-review").style.display = "flex";
-    document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
+    const modalBox = document.getElementById("modal-img-review");
+    modalBox.style.display = "flex";
+    if (primitiveImgId != 'video') {
+      if (document.getElementById('video-modal')) {
+        modalBox.removeChild(modalBox.lastElementChild);
+        const imgTag = document.createElement("img");
+        imgTag.classList.add("modal-content");
+        imgTag.src = document.getElementById(primitiveImgId).src;
+        imgTag.setAttribute('id', 'img-modal');
+        modalBox.appendChild(imgTag);
+      } else {
+        document.getElementById("img-modal").src = document.getElementById(primitiveImgId).src;
+      }
+    } else {
+      modalBox.removeChild(modalBox.lastElementChild);
+      const videoTag = document.createElement("video");
+      videoTag.classList.add("modal-content");
+      videoTag.src = document.getElementById("video-play").src;
+      videoTag.setAttribute('controls', 'true');
+      videoTag.setAttribute('id', 'video-modal');
+      modalBox.appendChild(videoTag);
+    }
   }
 
   onChangeClose() {
@@ -112,6 +132,7 @@ class Creating extends Component {
       courseNameTemp: name,
       courseStatusTemp: status,
     })
+    return <Popup />
   }
 
   render() {
@@ -263,18 +284,19 @@ class Creating extends Component {
             </div>
             <div className="media-component">
               {this.renderMedia()}
-              {/* <div className="img-wrapper flex-column">
+              <div className="img-wrapper flex-column">
+                <div className="video" />
                 <div className="flex-column center">
-                  <div className="video"></div>
-                  <img className="cover-img" src="/img/demo2.jpg" alt="cover" />
-                  <button className="play-btn-wrapper">
+                  <video id='video-play' src="/video/test.mp4" className="cover-img">
+                  </video>
+                  <button onClick={() => this.onChangeModalPicture("video")} className="play-btn-wrapper">
                     <img className="play-btn" src="/icons/play.svg" alt="play" />
                   </button>
                 </div>
                 <button>
                   <span className="icon-delete delete-btn"></span>
                 </button>
-              </div> */}
+              </div>
               <div className="blank-img flex-column center">
                 <button className="add-btn-wrapper">
                   <span onClick={this.uploadMedia} className="icon-add add-btn"></span>

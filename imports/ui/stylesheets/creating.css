@@ -237,6 +237,7 @@ input {
 .play-btn-wrapper {
 	position: absolute;
 	padding: 10px;
+	top: 20%;
 }
 .play-btn {
 	height: 45px;
@@ -262,7 +263,7 @@ input {
 
 .blank-img {
 	box-sizing: border-box;
-	width: 175px;
+	width: 173px;
 	height: 119px;
 	border: 1px dotted #b7b7b7;
 	border-radius: 4px;
