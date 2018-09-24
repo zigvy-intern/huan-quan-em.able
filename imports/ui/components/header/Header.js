@@ -8,7 +8,14 @@ export default class Header extends Component {
     super(props);
     // this.changeOnClick = this.changeOnClick.bind(this);
     this.state = {
+<<<<<<< Updated upstream
       flag: false,
+=======
+      search: '',
+      whiteNavChildFlag: false,
+      searchFlag: false,
+      notificationPing: 0,
+>>>>>>> Stashed changes
     };
     this.changeOnClick = this.changeOnClick.bind(this);
     this.changeDropDownOnClick = this.changeDropDownOnClick.bind(this);
@@ -25,7 +32,7 @@ export default class Header extends Component {
   }
 
   changeDropDownOnClick() {
-    if (this.state.whiteNavChildFlag == false) {
+    if (!this.state.whiteNavChildFlag) {
       document.getElementById("drop-down-list").style.display = "flex";
       this.setState({
         whiteNavChildFlag: true,
@@ -39,7 +46,7 @@ export default class Header extends Component {
   }
 
   changeOnSearchClick() {
-    if (this.state.searchFlag == false) {
+    if (!this.state.searchFlag) {
       document.getElementById("search-bar").style.display = "block";
       this.setState({
         searchFlag: true,
@@ -160,14 +167,29 @@ export default class Header extends Component {
               </div>
             </div>
             <div id="search-toggle" className="child">
+<<<<<<< Updated upstream
               <span onClick={() => this.changeOnSearchClick()} className="icon-search"></span>
               <div id="search-bar" className="slide-animation">
                 <form id="searchForm" method="get">
                   <input type="search" id="searchField" placeholder="Course name..." autoComplete="off" />
+=======
+              <span
+                onClick={() => this.changeOnSearchClick()}
+                className="icon-search">
+              </span>
+              <div id="search-bar" className="slide-animation">
+                <form id="searchForm" method="get">
+                  <input
+                    type="search"
+                    id="searchField"
+                    placeholder="Course name..."
+                    onChange={this.handleSearchInfo}
+                  />
+>>>>>>> Stashed changes
                 </form>
               </div>
             </div>
-            <div className="child">
+            <div data-number={this.state.notificationPing} className="child">
               <span className="icon-noti"></span>
             </div>
           </div>
@@ -176,4 +198,17 @@ export default class Header extends Component {
 
     )
   }
+<<<<<<< Updated upstream
 }
+=======
+}
+
+export default withTracker(() => {
+  Meteor.subscribe('courses');
+
+  return {
+    COURSE_COUNT: Courses.find({ _id: { $ne: true } }).count(),
+    CATE_COUNT: Courses.find({ category: { unique: true, dropDups: true } }).count(),
+  };
+})(Header);
+>>>>>>> Stashed changes
