@@ -82,10 +82,6 @@
   flex-direction: row;
 }
 
-.icon-edit{
-  color: white;
-}
-
 
 .middle > .child:nth-child(2){
   border-left: 1px solid #6a6e74;
@@ -98,16 +94,12 @@
   opacity: .7;
 }
 
-.icon-edit:hover{
-  color: #a6a6a6;
-}
-
-.icon-delete:hover{
-  color: #a6a6a6;
-}
-
 .loading-wrapper{
   margin-top:0 ;
+}
+
+.on-hover-white:hover{
+  color: white
 }
 
 @media (max-width:785px){

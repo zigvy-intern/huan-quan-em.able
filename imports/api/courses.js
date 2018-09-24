@@ -25,11 +25,7 @@ Meteor.methods({
     check(code, String);
     check(img, String);
 
-    if (!this.userId) {
-      throw new Meteor.Error(403, "Not authorized");
-    }
-
-    Courses.insert({
+    const INSERT_COURSE = Courses.insert({
       name,
       category,
       subCategory,
@@ -45,20 +41,25 @@ Meteor.methods({
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
     });
+
+    if (owner == this.userId) {      
+      return INSERT_COURSE;
+    }
+    
+    throw new Meteor.Error(403, "Not authorized");    
   },
+
   'courses.edit' (courseId, name, category, subCategory, subject, price, 
-    level, size, desc, status, img) {
-      check(courseId, String)
-      check(status, String);
-      check(img, String);
+    level, size, desc, status, img, owner) {
 
-      if (!this.userId) {
-      throw new Meteor.Error(403, "Not authorized");
-      }
+    check(courseId, String)
+    check(status, String);
+    check(img, String);
 
-      Courses.update(
-        { _id: courseId },
-        { 
+    const UPDATE_COURSE = Courses.update(
+      { _id: courseId },
+      { 
+        $set: {
           name: name,
           category: category,
           subCategory: subCategory,
@@ -68,16 +69,37 @@ Meteor.methods({
           size: size,
           desc: desc,
           status: status,
-          img: img
+          img: img,
+          createdAt: new Date(),
         }
-      );
-      },
+      }
+    );
+
+    if (Roles.userIsInRole(this.userId, ['admin'])) {      
+      return UPDATE_COURSE;
+    }
+
+    if (owner == this.userId) {      
+      return UPDATE_COURSE;
+    }
+    
+    throw new Meteor.Error(403, "Not authorized");    
+  },
+
+  'courses.load' (courseNum) {
+    check(courseNum, Number);
+    const courses = Courses.find( {}, { limit: courseNum } ).fetch();
+
+    return courses;
+  },
+
   'courses.get' (courseId) {
     check(courseId, String);
     const result = Courses.findOne({ _id: courseId });
         
     return result;    
   },
+
   'courses.remove' (courseId, owner) {
     check(courseId, String);
     check(owner, String);

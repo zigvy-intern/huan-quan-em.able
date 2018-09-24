@@ -9,6 +9,7 @@ import '/imports/ui/stylesheets/homePageOne.css';
 import '/imports/ui/stylesheets/creating.css';
 import '/imports/ui/stylesheets/main.css';
 import '/imports/ui/stylesheets/homePageCard.css';
+import '/imports/ui/stylesheets/popup.css';
 
 class MainLayout extends Component {
 	render() {
