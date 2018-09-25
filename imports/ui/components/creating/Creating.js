@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -9,6 +9,7 @@ import Map from './Map';
 import { Image } from './Media';
 import { Requirement } from './Requirement';
 import Popup from '../popup/Popup.js';
+import Context from '../../../startup/client/index';
 let temporaryStatus = '';
 
 class Creating extends Component {
@@ -326,18 +327,32 @@ class Creating extends Component {
           </div>
 
           <div className="bottom flex-row center">
-            <button
-              onClick={this.createLiveCourse}
-              className="bottom-btn bold"
-              id="bottom-btn1">
-              Create
-            </button>
-            <button
-              onClick={this.createDraftCourse}
-              className="bottom-btn bold"
-              id="bottom-btn2">
-              Save as draft
-            </button>
+            <Context.Consumer>
+              {
+                context => (
+                  <Fragment>
+                    <button
+                      onClick={() => {
+                        this.createLiveCourse();
+                        context.changeNotiNum(context.notiNum + 1);
+                      }}
+                      className="bottom-btn bold"
+                      id="bottom-btn1">
+                      Create
+                  </button>
+                    <button
+                      onClick={() => {
+                        this.createDraftCourse();
+                        context.changeNotiNum(context.notiNum + 1);
+                      }}
+                      className="bottom-btn bold"
+                      id="bottom-btn2">
+                      Save as draft
+                  </button>
+                  </Fragment>
+                )
+              }
+            </Context.Consumer>
           </div>
         </div>
         <div id="modal-img-review" className="modal">

@@ -11,13 +11,25 @@ import '/imports/ui/stylesheets/creating.css';
 import '/imports/ui/stylesheets/main.css';
 import '/imports/ui/stylesheets/homePageCard.css';
 import '/imports/ui/stylesheets/popup.css';
+import Context from './index';
 
 class MainLayout extends Component {
+	state = {
+		notiNum: 0,
+		curPos: 1,
+	}
+
+	changeNotiNum = notiNum => this.setState({ notiNum })
+
+	changeCurPos = curPos => this.setState({ curPos })
+
 	render() {
 		return (
-			<div>
-				<div>{this.props.children}</div>
-			</div>
+			<Context.Provider value={{ ...this.state, changeNotiNum: this.changeNotiNum, changeCurPos: this.changeCurPos }}>
+				<div>
+					<div>{this.props.children}</div>
+				</div>
+			</Context.Provider>
 		)
 	}
 };

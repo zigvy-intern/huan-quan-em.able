@@ -88,6 +88,7 @@ body, html, p, span{
   cursor: pointer;
   display: flex;
   align-items: center;
+  border-bottom: 1.5px solid transparent;
 }
 .white-top > .child:nth-child(2){
   border-bottom: 1.5px solid #4a90e2;

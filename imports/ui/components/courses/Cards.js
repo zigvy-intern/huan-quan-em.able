@@ -11,7 +11,8 @@ class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ''
+      search: '',
+      notiNumber: this.props.previousNotiNumber,
     }
     this.renderCourse = this.renderCourse.bind(this);
   }
@@ -25,10 +26,9 @@ class Cards extends Component {
     const filteredCourses = this.props.courses.filter(course => {
       return course.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     })
-
     return (
       <div>
-        <Header />
+        <Header notiNumber={this.state.notiNumber === "undefined" ? this.state.notiNumber : 0} navigation />
         <div className="banner">
           <div className="my-courses">
             <div>
