@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import Accounts from '/imports/ui/components/accounts/Accounts';
 import Context from '../../../startup/client/index';
+import { Courses } from '/imports/api/courses';
 
-export default class Header extends Component {
+class Header extends Component {
 
   constructor(props) {
     super(props);
@@ -213,10 +214,10 @@ export default class Header extends Component {
 }
 
 
-// export default withTracker(() => {
-//   Meteor.subscribe('courses');
-//   return {
-//     COURSE_COUNT: Courses.find({ _id: { $ne: true } }).count(),
-//     CATE_COUNT: Courses.find({ category: { unique: true, dropDups: true } }).count(),
-//   };
-// })(Header);
+export default withTracker(() => {
+  Meteor.subscribe('courses');
+  return {
+    COURSE_COUNT: Courses.find({ _id: { $ne: true } }).count(),
+    CATE_COUNT: Courses.find({ category: { unique: true, dropDups: true } }).count(),
+  };
+})(Header);
