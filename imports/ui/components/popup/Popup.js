@@ -28,10 +28,10 @@ class Popup extends Component {
 
     displayMessage() {
         if (this.props.option == 'create') {
-            return "You just launched a new course: " + this.props.courseName + ", status: " + this.props.status;
+            return "You just launched a new course: " + this.props.courseName.toUpperCase() + ", status: " + this.props.status.toUpperCase();
         }
         if (this.props.option == 'update') {
-            return "You just edit course: " + this.props.courseName + ", status: " + this.props.status;
+            return "You just edit course: " + this.props.courseName.toUpperCase() + ", status: " + this.props.status.toUpperCase();
         }
     }
 

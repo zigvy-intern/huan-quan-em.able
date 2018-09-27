@@ -184,6 +184,17 @@ class RenderEditing extends Component {
     return (
       <div>
         <Header />
+        <div className="banner">
+          <div className="my-courses">
+            <div>
+              My Courses
+            </div>
+            <div>
+              3 Categories &#8901; 6 Courses
+            </div>
+            <div></div>
+          </div>
+        </div>
         <div className="main">
           <div className="title light">Edit a Course</div>
           <div className="flex-column component-wrapper">
@@ -203,11 +214,11 @@ class RenderEditing extends Component {
               </div>
             </div>
             <div className="flex-row space-between">
-              <div className="info-wrapper-outside" id="category">
-                <div className="info-wrapper flex-row align space-between">
+              <div className="info-wrapper-outside set-height-custom" id="category">
+                <div className="info-wrapper flex-row align space-between select-custom">
                   <div className="info light">Category:</div>
                   <select
-                    className="flex-row space-between detail bold"
+                    className="flex-row space-between detail bold select-child-custom"
                     value={this.state.category}
                     placeholder={course.category}
                     onChange={(e) => this.setState({ category: e.target.value })}
@@ -220,11 +231,11 @@ class RenderEditing extends Component {
                   </select>
                 </div>
               </div>
-              <div className="info-wrapper-outside" id="sub-category">
-                <div className="info-wrapper flex-row align space-between" >
+              <div className="info-wrapper-outside set-height-custom" id="sub-category">
+                <div className="info-wrapper flex-row align space-between select-custom" >
                   <div className="info light">Sub Category:</div>
                   <select
-                    className="flex-row space-between detail bold"
+                    className="flex-row space-between detail bold select-child-custom"
                     value={this.state.subCategory}
                     placeholder={course.subCategory}
                     onChange={(e) => this.setState({ subCategory: e.target.value })}
@@ -237,11 +248,11 @@ class RenderEditing extends Component {
                   </select>
                 </div>
               </div>
-              <div className="info-wrapper-outside" id="subject">
-                <div className="info-wrapper flex-row align space-between" >
+              <div className="info-wrapper-outside set-height-custom" id="subject">
+                <div className="info-wrapper flex-row align space-between select-custom" >
                   <div className="info light">Subject:</div>
                   <select
-                    className="flex-row space-between detail bold"
+                    className="flex-row space-between detail bold select-child-custom"
                     value={this.state.subject}
                     placeholder={course.subject}
                     onChange={(e) => this.setState({ subject: e.target.value })}
@@ -272,11 +283,11 @@ class RenderEditing extends Component {
                   <div className="blue-detail bold">USD</div>
                 </div>
               </div>
-              <div className="info-wrapper-outside" id="level">
-                <div className="info-wrapper flex-row align space-between" >
+              <div className="info-wrapper-outside set-height-custom" id="level">
+                <div className="info-wrapper flex-row align space-between select-custom" >
                   <div className="info light">Difficulty Level:</div>
                   <select
-                    className="flex-row space-between detail bold"
+                    className="flex-row space-between detail bold select-child-custom"
                     value={this.state.level}
                     placeholder={course.level}
                     onChange={(e) => this.setState({ level: e.target.value })}
@@ -289,11 +300,11 @@ class RenderEditing extends Component {
                   </select>
                 </div>
               </div>
-              <div className="info-wrapper-outside" id="size">
-                <div className="info-wrapper flex-row align space-between" >
+              <div className="info-wrapper-outside set-height-custom" id="size">
+                <div className="info-wrapper flex-row align space-between select-custom" >
                   <div className="info light">Class Size:</div>
                   <select
-                    className="flex-row space-between detail bold"
+                    className="flex-row space-between detail bold select-child-custom"
                     value={this.state.size}
                     placeholder={course.size}
                     onChange={(e) => this.setState({ size: e.target.value })}

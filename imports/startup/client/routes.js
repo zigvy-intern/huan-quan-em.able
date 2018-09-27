@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Popup from '/imports/ui/components/popup/Popup';
+import LoginPopup from '/imports/ui/components/popup/LoginPopup';
+import ErrorPopup from '/imports/ui/components/popup/ErrorPopup';
 import Creating from '/imports/ui/components/creating/Creating';
 import Editing from '/imports/ui/components/creating/Editing';
 import ListCourses from '/imports/ui/components/courses/ListCourses';
@@ -11,6 +13,7 @@ import '/imports/ui/stylesheets/creating.css';
 import '/imports/ui/stylesheets/main.css';
 import '/imports/ui/stylesheets/homePageCard.css';
 import '/imports/ui/stylesheets/popup.css';
+import '/imports/ui/stylesheets/loginPopup.css';
 import Context from './index';
 
 class MainLayout extends Component {
@@ -46,6 +49,9 @@ const Routes = () => (
 					<Route exact path="/courses-card" component={Cards} />
 					<Route exact path="/courses-list/:id" component={Editing} />
 					<Route exact path="/courses-card/:id" component={Editing} />
+					<Route exact path="/popup" component={Popup} />
+					<Route exact path="/loginPopup" component={LoginPopup} />
+					<Route exact path="/error" component={ErrorPopup} />
 				</Switch>
 			</MainLayout>
 		</Router>
