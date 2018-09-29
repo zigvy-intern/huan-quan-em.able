@@ -82,14 +82,8 @@ Meteor.methods({
     check(courseId, String);
     check(owner, String);
 
-    if (Roles.userIsInRole(this.userId, ['admin'])) {
+    if (Roles.userIsInRole(Meteor.user()._id, ['admin']) || owner == Meteor.user()._id) {
       Courses.remove(courseId);
     }
-
-    if (owner == this.userId) {
-      Courses.remove(courseId);
-    }
-
-    throw new Meteor.Error(403, "Not authorized");
   }
 });

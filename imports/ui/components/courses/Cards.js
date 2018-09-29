@@ -14,6 +14,7 @@ class Cards extends Component {
       search: '',
       notiNumber: this.props.previousNotiNumber,
     }
+    this.handleSearch = this.handleSearch.bind(this);
     this.renderCourse = this.renderCourse.bind(this);
   }
 
@@ -21,25 +22,31 @@ class Cards extends Component {
     return <Card key={course._id} course={course} />
   }
 
+  handleSearch(SEARCH_INPUT) {
+    if (SEARCH_INPUT == undefined) {
+      return;
+    }
+    this.setState(
+      SEARCH_INPUT
+    )
+  }
+
   render() {
     const { search } = this.state;
     const filteredCourses = this.props.courses.filter(course => {
       return course.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     })
+
+    const LOADER = (
+      <div className="loading-wrapper">
+        <div className="loading">
+          <span className="icon-loading"></span> <span>Loading more Courses...</span>
+        </div>
+      </div>
+    );
     return (
       <div>
-        <Header notiNumber={this.state.notiNumber === "undefined" ? this.state.notiNumber : 0} navigation />
-        <div className="banner">
-          <div className="my-courses">
-            <div>
-              My Courses
-            </div>
-            <div>
-              3 Categories &#8901; 6 Courses
-            </div>
-            <div></div>
-          </div>
-        </div>
+        <Header handleSearch={this.handleSearch} notiNumber={this.state.notiNumber === "undefined" ? this.state.notiNumber : 0} navigation />
         <div className="description-wrapper">
           <div className="description">
             <div className="des-child">

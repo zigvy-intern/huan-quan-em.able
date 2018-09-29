@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb';
 import { Meteor } from 'meteor/meteor';
 import './courses';
 import './media';
+import './users';
 import forEach from 'lodash/forEach';
 
 {/*const uri = "mongodb+srv://emable1:DFJk78MEUlnsBrVl@em-able-utlze.mongodb.net/test?retryWrites=true";

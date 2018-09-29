@@ -20,6 +20,15 @@ class ListCourses extends Component {
     return <List key={course._id} course={course} />
   }
 
+  handleSearch(SEARCH_INPUT) {
+    if (SEARCH_INPUT == undefined) {
+      return;
+    }
+    this.setState(
+      SEARCH_INPUT
+    )
+  }
+
   render() {
     const { search } = this.state;
     const filteredCourses = this.props.courses.filter(course => {
@@ -29,17 +38,6 @@ class ListCourses extends Component {
     return (
       <div>
         <Header />
-        <div className="banner">
-          <div className="my-courses">
-            <div>
-              My Courses
-            </div>
-            <div>
-              3 Categories &#8901; 6 Courses
-            </div>
-            <div></div>
-          </div>
-        </div>
         <div className="description-wrapper">
           <div className="description">
             <div className="des-child">

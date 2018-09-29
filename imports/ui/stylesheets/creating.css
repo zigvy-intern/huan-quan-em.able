@@ -341,7 +341,7 @@ input {
 }
 
 .modal{
-	display: flex; 
+	display: none; 
   position: fixed; 
   z-index: 99; 
   left: 0;
@@ -397,6 +397,15 @@ input {
 
 .set-height-custom > div{
 	height: 50px;
+}
+
+.no-auth-wrapper{
+	text-align: center;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width:785px){

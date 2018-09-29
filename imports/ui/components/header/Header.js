@@ -19,6 +19,7 @@ class Header extends Component {
     this.changeOnClick = this.changeOnClick.bind(this);
     this.changeDropDownOnClick = this.changeDropDownOnClick.bind(this);
     this.changeOnSearchClick = this.changeOnSearchClick.bind(this);
+    this.handleSearchInfo = this.handleSearchInfo.bind(this);
   }
 
   changeOnClick(childPosition) {
@@ -58,7 +59,20 @@ class Header extends Component {
     }
   }
 
+  handleSearchInfo(e) {
+    const { handleSearch } = this.props;
+    const { search } = this.state;
+    this.setState({
+      search: e.target.value
+    })
+
+    handleSearch({
+      search: search
+    });
+  }
+
   render() {
+    const { CATE_COUNT, COURSE_COUNT } = this.props;
     return (
       <div className="all-use-top">
         <div className="blue-top-wrapper">
@@ -205,6 +219,17 @@ class Header extends Component {
                 )
               }
             </Context.Consumer>
+          </div>
+        </div>
+        <div className="banner">
+          <div className="my-courses">
+            <div>
+              My Courses
+            </div>
+            <div>
+              {CATE_COUNT} Categories &#8901; {COURSE_COUNT} Courses
+            </div>
+            <div></div>
           </div>
         </div>
       </div>

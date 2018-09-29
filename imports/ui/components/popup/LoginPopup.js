@@ -15,6 +15,8 @@ export default class LoginPopup extends Component {
     if (type == 'regis') {
       document.getElementById("modal-register-wrapper").style.display = "none";
     } else {
+      const { closeModal } = this.props;
+      closeModal();
       document.getElementById("modal-login-wrapper").style.display = "none";
     }
   }
@@ -30,7 +32,7 @@ export default class LoginPopup extends Component {
       if (typeof error === 'undefined') {
         this.onChangeClose("login");
       } else {
-
+        onLoginFail();
       }
     });
   }
@@ -45,7 +47,8 @@ export default class LoginPopup extends Component {
       console.log(data);
       Meteor.call('user.register', data, (err, result) => {
         console.log(err, result);
-      })
+        this.onChangeClose('regis');
+      });
     } else {
       console.log("Password and re-password not correct");
     }

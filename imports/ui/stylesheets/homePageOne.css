@@ -289,6 +289,15 @@
   color: #a6a6a6;
 }
 
+.close-popup{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
 @media (max-width:785px){
   .description{
     max-width: 600px;
